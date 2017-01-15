@@ -1,0 +1,6 @@
+composer.lock
+.git/
+.c9/
+src/data/*
+src/config/config.php
+src/lib/*

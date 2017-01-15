@@ -1,3 +1,6 @@
+Order Deny,Allow
+Allow from Allow
+
 # Enable PHP 5
 SetEnv PHP_VER 5_3
 
