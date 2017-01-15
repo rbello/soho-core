@@ -1,0 +1,206 @@
+#!/bin/bash
+
+# PLUG is a part of SoHo project.
+# See http://soho.evolya.fr/ for more details.
+# Copyright (c) 2012 evolya.fr
+
+PLUG_VERSION="5.0-alpha"
+PLUG_SHFILE="`readlink -f $0`"
+PLUG_BASE="`dirname $PLUG_SHFILE`"
+PLUG_CD=`pwd`
+
+#echo "*** Plug v$PLUG_VERSION Base=$PLUG_BASE";
+
+case $1 in
+
+	# Installation
+	"install")
+		case $2 in
+
+			"plug")
+				sudo ln -s $PLUG_SHFILE "/usr/bin/plug"
+				sudo chown -h "$USER:$USER" "/usr/bin/plug"
+				exit;;
+
+			"php-cli")
+				sudo apt-get -qq install php5-cli php5-curl
+				exit;;
+
+			"lamp")
+				echo "The workspace will be installed in: $PLUG_CD"
+				echo -n "Continue? [y/N] "
+				read yesno
+				if [ "$yesno" = "y" ]; then
+					# Install lamp
+					sudo apt-get -qq install lamp-server^
+					# Install MySQL frontend
+					sudo apt-get -qq install mysql-navigator
+					# Install apache modules
+					sudo a2enmod rewrite
+					# Init www folder
+					sudo rm -rf "/var/www"
+					sudo ln -s "$PLUG_CD" "/var/www"
+					# Configure PHP
+					sudo cp -f "$PLUG_BASE/install/php-cgi.ini"		"/etc/php5/apache2/php.ini"
+					# Configure Apache
+					sudo cp -f "$PLUG_BASE/install/apache-default.conf"	"/etc/apache2/sites-available/default"
+					sudo cp -f "$PLUG_BASE/install/apache-httpd.conf"	"/etc/apache2/httpd.conf"
+					sudo cp -f "$PLUG_BASE/install/apache-security.conf"	"/etc/apache2/conf.d/security"
+					cat "$PLUG_BASE/apache-envvars.conf" | sed -e "s/www-user/$USER/g" > "$PLUG_BASE/tmp/envvars"
+					sudo cp -f "$PLUG_BASE/tmp/envvars"			"/etc/apache2/envvars"
+					# Redirect default site configuration
+					sudo rm -rf "/etc/apache2/sites-enabled/000-default"
+					sudo ln -s "/etc/apache2/sites-available/default" "/etc/apache2/sites-enabled/000-default"
+					# Change access rights
+					sudo adduser "$USER" www-data
+					sudo chmod -R 755 "$PLUG_CD"
+					sudo chown -R "$USER:www-data" "$PLUG_CD"
+					# Restart server
+					sudo service apache2 restart	
+				fi
+				exit;;
+
+			"chrome")
+				sudo apt-get install chromium-browser
+				exit;;
+
+			"sass")
+				sudo apt-get install ruby
+				sudo gem install sass
+				exit;;
+
+			"doxygen")
+				sudo apt-get install doxygen
+				exit;;
+
+			"")
+				echo "Available targets: plug, php-cli, lamp, chrome, sass, doxygen";
+				exit;;
+
+		esac
+		echo "Target not found: $2";;
+
+	# Cleanup
+	"cleanup")
+		if [ -d "$PLUG_BASE" ]; then
+			rm -f -r "$PLUG_BASE/tmp/"
+			mkdir "$PLUG_BASE/tmp/"
+		fi;;
+
+	# Make
+	"make")
+		if [  ! -n "$2" ] || [ "$2" = "--help" ]; then
+			echo "Usage: plug make <packagename> [--list] [taskname]"
+			if [ "$2" = "--help" ]; then
+				echo "Execute a task in an OctoPHPus build file."
+				echo "Options:"
+				echo " --list      List available targets in buildfile"
+			fi
+			exit
+		fi
+		if [ ! -f "$PLUG_BASE/lib/octophpus.php" ]; then
+			echo "Error: library file 'octophpus.php' not found."
+			echo "Use 'plug install' in order to setup the repository."
+			exit
+		fi
+		if [ ! -d "$PLUG_CD/$2" ]; then
+			echo "Package not found: $2 (in workspace $PLUG_CD/)"
+			exit
+		fi
+		if [ ! -f "$PLUG_CD/$2/build.xml" ]; then
+			echo "Buildfile not found: $PLUG_CD/$2/build.xml"
+			exit
+		fi
+		PACKAGE="$2"
+		if [ ! -n "$3" ]; then
+			php -c "$PLUG_BASE/install/php-cli.ini" -d "error_log=$PLUG_BASE/tmp/php_errors.log" -f "$PLUG_BASE/lib/octophpus.php" "$PLUG_CD/$PACKAGE/build.xml" -- "--list"
+			echo ""
+			exit
+		else
+			shift 2
+			php -c "$PLUG_BASE/install/php-cli.ini" -d "error_log=$PLUG_BASE/tmp/php_errors.log" -f "$PLUG_BASE/lib/octophpus.php" "$PLUG_CD/$PACKAGE/build.xml" -- $*
+			echo ""
+			exit
+		fi;;
+
+	# Restart
+	"restart")
+		if [ "$2" = "apache" ] || [ "$2" = "httpd" ]; then
+			sudo service apache2 restart
+			exit
+		fi
+		if [ "$2" = "mysql" ] || [ "$2" = "mysqld" ]; then
+			sudo service mysql restart
+			exit
+		fi
+		echo "Usage: plug restart <service>"
+		echo "Services can be:"
+		echo " apache        The HTTP deamon"
+		echo " mysql         The MySQL service";;
+
+	# Help
+	"--help")
+		echo "Plug version $PLUG_VERSION, running on $(uname -o) ($(uname -r))"
+		php -v
+		echo ""
+		echo "Local workspace: $PLUG_CD"
+		echo ""
+		echo "Type 'plug help NAME' to learn more about the function called 'NAME'."
+		echo "Available commands are:"
+		echo ""
+		echo " auth           Run remote server authentication process."
+		echo ""
+		echo " cleanup        Remove all temporary files and close session."
+		echo " install        Setup the local workspace."
+		echo " make           Execute a task in an OctoPHPus build file."
+		echo " apachelogs     Read Apache logs."
+		echo " phplogs        Read PHP-CLI logs."
+		echo " restart        Resert a service, like httpd or mysqld."
+		echo " server         Display server name."
+		echo " where          Display installation paths."
+		;;
+
+	# Config
+	"config")
+		echo "Workspace folder : $PLUG_CD"
+		echo "Plug folder      : $PLUG_BASE"
+		echo "Plug version     : $PLUG_VERSION"
+		;;
+
+	# Apache logs
+	"apachelogs")
+		tail -f "/var/log/apache2/error.log";;
+
+	# PHP logs
+	"phplogs")
+		tail -f "$_PLUG_PATH/tmp/php_errors.log";;
+
+	# Shell
+	"shell")
+		echo "Plug Shell, version $PLUG_VERSION. Use 'exit' or Ctrl+C to exit this shell."
+		while [ 1 ]
+		do
+			echo -n "> "
+			read -e cmd
+			if [ "$cmd" = "exit" ]; then
+				exit
+			fi
+			sh "$PLUG_CD/plug" $cmd
+		done;;
+
+	# Empty
+	"")
+		echo "Usage: plug <command> [args...]"
+		echo "Type 'plug --help' for a list of available commands."
+		echo "Use 'plug shell' to start a shell conversation.";;
+
+	# Disabled commands
+	"login")
+		echo "Sorry, this command can not be used directly.";;
+
+	# Plug command
+	*)
+		php -c "$PLUG_BASE/install/php-cli.ini" -d "error_log=$PLUG_BASE/tmp/php_errors.log" -f "$PLUG_BASE/cli.php" -- $*
+		;;
+
+esac

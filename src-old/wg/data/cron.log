@@ -1,0 +1,4 @@
+Sun, 09 Oct 2016 13:25:20 +0200 *** Run modules/core/cron.databasebackup.php
+Sun, 09 Oct 2016 13:25:20 +0200 [Cronjob database_backup] Start:
+Sun, 09 Oct 2016 13:25:25 +0200 [Cronjob database_backup] Finish backup: 55 tables (8.49 MB).
+

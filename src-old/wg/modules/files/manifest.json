@@ -1,0 +1,52 @@
+{
+	"moduleName": "files",
+	"moduleVersion": "1.0",
+	"vendorName": "evolya.fr",
+	"vendorURL": "http://evolya.fr/",
+	
+	"menu": [
+		{
+			"label": "Files",
+			"view": "files",
+			"requireFlags": "c"
+		}
+	],
+	
+	"stylesheets": [ "modules/files/files.css" ],
+	
+	"vars": {
+		"files_folder": {
+			"var_desc": "Emplacement du répertoire de fichier",
+			"value": "{$base.path}/../files/"
+		},
+		"revisions_folder": {
+			"var_desc": "Emplacement du répertoire des révisions",
+			"value": "{$base.path}/../data/subversion/"
+		}
+	},
+	
+	"views": {
+		"files": {
+			"script": "modules/files/view.files.php",
+			"requireFlags": "c"
+		}
+	},
+	
+	"webservices": {
+		"readdir": {
+			"script": "modules/files/ws.readdir.php",
+			"method": "both",
+			"returnType": "application/json",
+			"requireFlags": "u",
+			"description": "Read a directory."
+		},
+		"getfile": {
+			"script": "modules/files/ws.getfile.php",
+			"method": "both",
+			"returnType": "application/octet-stream",
+			"requireFlags": "u",
+			"description": "Download a file."
+		}
+	}
+	
+}

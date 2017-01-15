@@ -1,0 +1,21 @@
+# Les données du système de fichier
+files/*
+
+# Les données 'publiques'
+data/*
+
+# Les données 'privées'
+wg/data/*
+
+# Les fichiers temporaires
+*~
+
+# Les fichiers générés par les OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db

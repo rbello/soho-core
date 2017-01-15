@@ -1,0 +1,1 @@
+a:6:{s:1:"/";a:2:{s:3:"own";s:4:"root";s:3:"grp";s:1:"-";}s:4:"/dev";a:2:{s:3:"own";N;s:3:"grp";s:3:"dev";}s:5:"/home";a:2:{s:3:"own";N;s:3:"grp";s:4:"user";}s:9:"/home/ted";a:2:{s:3:"own";s:3:"ted";s:3:"grp";s:1:"-";}s:10:"/home/remi";a:2:{s:3:"own";s:4:"remi";s:3:"grp";s:1:"-";}s:12:"/home/shared";a:2:{s:3:"own";N;s:3:"grp";s:4:"user";}}

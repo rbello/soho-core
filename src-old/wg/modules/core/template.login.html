@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Authentication</title>
+  <meta name="viewport" content="width=500px, initial-scale=1.0">
+  <style type="text/css">
+	/* WGCRT */
+	form.wgcrt {
+		width: 200px; margin: 50px auto 0 auto; border: 1px solid #ddd; cursor: default;
+		background: #efefef; padding: 0; font-family: arial, verdana, sans;
+	}
+	form.wgcrt:after { content: " "; display: block; clear: both; height: 1px; overflow: hidden; }
+	p.wgcrt-realm { margin: 5px; font-weight: bolder; text-align: center; }
+	input.wgcrt-user, input.wgcrt-pwd {
+		height: 10px; padding: 7px 7px 7px 30px; cursor: text;
+		border: 1px solid #ccc; margin: 5px 5px 0 5px;
+	}
+	input.wgcrt-user { background: #fff url(wg/modules/core/public/img-login.png) 2px 0 no-repeat; }
+	input.wgcrt-pwd { background: #fff url(wg/modules/core/public/img-login.png) 2px -25px no-repeat; }
+	input.wgcrt-submit {
+		float: right; background-color: #222; color: #fff; margin-right: 5px;
+		border: 1px solid #ccc; cursor: pointer;
+	}
+	input.wgcrt-submit:hover { background-color: #444; }
+	input.wgcrt-submit:active { color: red; }
+	.wgcrt-msg { text-align: center; padding: 0 15px; font-size: 0.8em; color: red; }
+	div.wgcrt-btlink { margin: 0 auto !important; clear: both; }
+	/* Virtual KeyBoard */
+	#vkb {
+		position: absolute;
+		left: 50%;
+		margin-left: -245px;
+		margin-top: -10px;
+		display: none;
+		border: 1px solid #ccc;
+		width: 490px;
+		padding: 10px;
+		background-color: #000;
+		-webkit-border-radius: 10px;
+		-moz-border-radius: 10px;
+		border-radius: 10px;
+		line-height: 25px;
+	}
+	#vkb:before {
+		content: " ";
+		display: block;
+		position: absolute;
+		width: 18px;
+		height: 18px;
+		top: -8px;
+		left: 240px;
+		background: #000;
+		-moz-transform:rotate(45deg);
+		-webkit-transform:rotate(45deg);
+		-o-transform:rotate(45deg);
+		-ms-transform:rotate(45deg);
+	}
+	#vkb input {
+		background: white;
+		border: none;
+		-webkit-border-radius: 4px;
+		-moz-border-radius: 4px;
+		border-radius: 4px;
+		width: 25px;
+		height: 20px;
+		cursor: pointer;
+	}
+	#vkb input:hover { background-color: #ddd; }
+	#vkb input:active { background-color: #bbb; }
+	#vkb input[name="backspace"] { width: auto; }
+	#vkb input#shift, #vkb input#shifton {
+		width: 70px;
+		text-align: left;
+		margin-left: 40px;
+	}
+	#spacebar input {
+		width: 180px;
+		margin: 0 auto;
+		margin-left: 150px;
+	}
+	#row0_shift, #row1_shift, #row2_shift, #row3_shift { display: none; }
+	#row0, #row0_shift { padding-left: 20px; }
+	#row1, #row1_shift { padding-left: 60px; }
+	#row2, #row2_shift { padding-left: 70px; }
+	#shifton { border-left: 3px solid #000; border-top: 3px solid #000; }
+  </style>
+  <script>
+  
+  </script>
+</head>
+
+<body>
+	<div id="main" role="main">
+		<div id="loginform"><?php echo $session->loginform(); ?></div>
+	</div>
+	<div id="vkb">
+		<div id="row0">
+			<input name="accent" type="button" value="`" />
+			<input name="1" type="button" value="1" />
+			<input name="2" type="button" value="2" />
+			<input name="3" type="button" value="3" />
+			<input name="4" type="button" value="4" />
+			<input name="5" type="button" value="5" />
+			<input name="6" type="button" value="6" />
+			<input name="7" type="button" value="7" />
+			<input name="8" type="button" value="8" />
+			<input name="9" type="button" value="9" />
+			<input name="0" type="button" value="0" />
+			<input name=" - " type="button" value=" - " />
+			<input name="=" type="button" value="=" />
+			<input name="backspace" type="button" value="Backspace" />
+		</div>
+		<div id="row0_shift">
+			<input name="tilde" type="button" value="~" />
+			<input name="exc" type="button" value="!" />
+			<input name="at" type="button" value="@" />
+			<input name="hash" type="button" value="#" />
+			<input name="dollar" type="button" value="$" />
+			<input name="percent" type="button" value="%" />
+			<input name="caret" type="button" value="^" />
+			<input name="ampersand" type="button" value="&" />
+			<input name="asterik" type="button" value="*" />
+			<input name="openbracket" type="button" value="(" />
+			<input name="closebracket" type="button" value=")" />
+			<input name="underscore" type="button" value="_" />
+			<input name="plus" type="button" value="+" />
+			<input name="backspace" type="button" value="Backspace" />
+		</div>
+		<div id="row1">
+			<input name="q" type="button" value="q" />
+			<input name="w" type="button" value="w" />
+			<input name="e" type="button" value="e" />
+			<input name="r" type="button" value="r" />
+			<input name="t" type="button" value="t" />
+			<input name="y" type="button" value="y" />
+			<input name="u" type="button" value="u" />
+			<input name="i" type="button" value="i" />
+			<input name="o" type="button" value="o" />
+			<input name="p" type="button" value="p" />
+			<input name="[" type="button" value="[" />
+			<input name="]" type="button" value="]" />
+			<input name="\" type="button" value="\" />
+		</div>
+		<div id="row1_shift">
+			<input name="Q" type="button" value="Q" />
+			<input name="W" type="button" value="W" />
+			<input name="E" type="button" value="E" />
+			<input name="R" type="button" value="R" />
+			<input name="T" type="button" value="T" />
+			<input name="Y" type="button" value="Y" />
+			<input name="U" type="button" value="U" />
+			<input name="I" type="button" value="I" />
+			<input name="O" type="button" value="O" />
+			<input name="P" type="button" value="P" />
+			<input name="{" type="button" value="{" />
+			<input name="}" type="button" value="}" />
+			<input name="|" type="button" value="|" />
+		</div>
+		<div id="row2">
+			<input name="a" type="button" value="a" />
+			<input name="s" type="button" value="s" />
+			<input name="d" type="button" value="d" />
+			<input name="f" type="button" value="f" />
+			<input name="g" type="button" value="g" />
+			<input name="h" type="button" value="h" />
+			<input name="j" type="button" value="j" />
+			<input name="k" type="button" value="k" />
+			<input name="l" type="button" value="l" />
+			<input name=";" type="button" value=";" />
+			<input name="'" type="button" value="'" /> 
+		</div>
+		<div id="row2_shift">
+			<input name="a" type="button" value="A" />
+			<input name="s" type="button" value="S" />
+			<input name="d" type="button" value="D" />
+			<input name="f" type="button" value="F" />
+			<input name="g" type="button" value="G" />
+			<input name="h" type="button" value="H" />
+			<input name="j" type="button" value="J" />
+			<input name="k" type="button" value="K" />
+			<input name="l" type="button" value="L" />
+			<input name=";" type="button" value=":" />
+			<input name="’" type="button" value='"' />
+		</div>
+		<div id="row3">
+			<input name="Shift" type="button" value="Shift" id="shift" />
+			<input name="z" type="button" value="z" />
+			<input name="x" type="button" value="x" />
+			<input name="c" type="button" value="c" />
+			<input name="v" type="button" value="v" />
+			<input name="b" type="button" value="b" />
+			<input name="n" type="button" value="n" />
+			<input name="m" type="button" value="m" />
+			<input name="," type="button" value="," />
+			<input name="." type="button" value="." />
+			<input name="/" type="button" value="/" />
+		</div>
+		<div id="row3_shift">
+			<input name="Shift" type="button" value="Shift" id="shifton" />
+			<input name="Z" type="button" value="Z" />
+			<input name="X" type="button" value="X" />
+			<input name="C" type="button" value="C" />
+			<input name="V" type="button" value="V" />
+			<input name="B" type="button" value="B" />
+			<input name="N" type="button" value="N" />
+			<input name="M" type="button" value="M" />
+			<input name="lt" type="button" value="&lt;" />
+			<input name="gt" type="button" value="&gt;" />
+			<input name="?" type="button" value="?" />
+		</div>
+		<div id="spacebar">
+			<input name="spacebar" type="button" value=" " />
+		</div>
+	</div>
+</body>
+</html>

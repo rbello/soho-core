@@ -1,0 +1,56 @@
+
+body#wg #container header ul#menu > li.module-dashboard:before { content: "S" !important; }
+
+/* View : Dashboard */
+
+#container #main #wrapper #view-dashboard .leftcol .widget {
+	width: 32%;
+	min-width: 200px;
+	margin: 10px 0 0 1%;
+	border: 1px solid #ccc;
+	float: left;
+	height: 300px;
+	font-size: 0.9em;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+#container #main #wrapper #view-dashboard .leftcol .widget h2 {
+	font-weight: bolder;
+	margin-bottom: 5px;
+	background-color: #1A74A7;
+	border: none;
+	color: #fff;
+	margin: 0 0 6px 0 !important;
+	padding: 5px;
+	-moz-box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .5), inset 0 -2px 10px #0f5c87;
+	box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+}
+
+#container #main #wrapper #view-dashboard .leftcol .widget h2 img { vertical-align: -2px; }
+
+#container #main #wrapper .view table.widget-list {
+	width: 98%;
+}
+
+#container #main #wrapper .view table.widget-list td {
+	vertical-align: top;
+}
+
+#container #main #wrapper .view table.widget-list img {
+	width: 50px;
+}
+
+#container #main #wrapper .view table.widget-list h3 {
+	margin: 5px 0 0 5px;
+	font-size: 1.15em;
+}
+
+#container #main #wrapper .view table.widget-list p {
+	margin: 5px 0 0 15px;
+}
+
+#container #main #wrapper .view table.widget-list p + p {
+	margin-top: 0;
+}

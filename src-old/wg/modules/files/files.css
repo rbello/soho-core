@@ -1,0 +1,80 @@
+
+body#wg #container header ul#menu > li.module-files:before { content: "K" !important; }
+
+/* Table */
+#container #main .view table#files-table a { color: #000; text-decoration: none; }
+#container #main .view table#files-table { width: 98%; }
+
+/* Table header */
+table#files-table th:nth-of-type(1) { width: 25px; text-align: center; }
+table#files-table th:nth-of-type(2) { width: auto; text-align: left; }
+table#files-table th:nth-of-type(3) { width: 80px; }
+table#files-table th:nth-of-type(4) { width: 80px; text-align: right; }
+table#files-table th:nth-of-type(5) { width: 200px; text-align: left; }
+
+/* Table body */
+table#files-table tr.locked td:nth-of-type(2) { color: #ccc; } 
+table#files-table td:nth-of-type(3),
+table#files-table td:nth-of-type(4),
+table#files-table td:nth-of-type(5) { font-size: 0.8em; }
+table#files-table td:nth-of-type(3) { text-align: right; }
+
+/* Filenames */
+table#files-table td:nth-of-type(2) a {
+	font-size: 1.1em;
+	display: block;
+	padding: 1px;
+}
+table#files-table td:nth-of-type(2) a:hover {
+	background: none !important;
+}
+
+/* Delete/Download/Rename links */
+table#files-table td:nth-of-type(3) a {
+	background: red;
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	overflow: hidden;
+	text-indent: -9999px;
+	vertical-align: middle;
+	-webkit-opacity: 0;
+	-moz-opacity: 0;
+	-o-opacity: 0;
+	opacity: 0;
+	-webkit-transition: opacity 500ms;
+	-moz-transition: opacity 500ms;
+	-o-transition: opacity 500ms;
+	transition: opacity 500ms;
+}
+table#files-table tr:hover td:nth-of-type(3) a {
+	-webkit-opacity: .3;
+	-moz-opacity: .3;
+	-o-opacity: .3;
+	opacity: .3;
+}
+table#files-table tr td:nth-of-type(3) a:hover {
+	background-color: transparent !important;
+	-webkit-opacity: .9;
+	-moz-opacity: .9;
+	-o-opacity: .9;
+	opacity: .9;
+}
+table#files-table td:nth-of-type(3) a.get { background: url(/core.png) -16px -155px no-repeat; }
+table#files-table td:nth-of-type(3) a.rename { background: url(/core.png) -16px -123px no-repeat; height: 17px; }
+table#files-table td:nth-of-type(3) a.del { background: url(/core.png) -16px -140px no-repeat; }
+
+/* Ic�nes des fichiers */
+table#files-table tr td:nth-of-type(1) {
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+table#files-table tr.file td:nth-of-type(1) { background-image: url(file.png); }
+table#files-table tr.folder td:nth-of-type(1) { background-image: url(folder.png); }
+table#files-table tr.file td[ext="pdf"] { background-image: url(application-pdf.png); }
+table#files-table tr.file td[ext="mp3"] { background-image: url(audio.png); }
+table#files-table tr.file td[ext="png"],
+table#files-table tr.file td[ext="bmp"],
+table#files-table tr.file td[ext="jpg"],
+table#files-table tr.file td[ext="jpeg"],
+table#files-table tr.file td[ext="gif"] { background-image: url(image.png); }

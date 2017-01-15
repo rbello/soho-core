@@ -1,0 +1,173 @@
+@CHARSET "ISO-8859-1";
+
+/* Form */
+
+form.formb-form { padding: 0; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; }
+form.formb-form * { padding: 0; margin: 0; }
+
+/* Fields */
+
+*.formb-field { }
+
+input.formb-field-text { width: 200px; padding: 3px; border-radius: 5px; border: 1px solid #ccc; }
+input.formb-field-text-password { }
+input.formb-field-text-date { background: url(date.png) right center no-repeat; }
+input.formb-field-text-slider { border: none; width: 100px; color: orange; font-weight: bolder; }
+div.formb-slider { margin: 6px !important; width: 370px; }
+
+select.formb-field-select { padding: 3px; min-width: 100px; border: 1px solid #ccc; border-radius: 5px; }
+select.formb-field-select option { }
+input.editable-select { padding: 3px; min-width: 100px; }
+div.editable-select-options { min-width: 100px; margin-top: 32px/*fix*/; }
+div.editable-select-options ul li { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; }
+
+textarea.formb-field-textarea { width: 370px; height: 100px; border-radius: 5px; padding: 10px; border: 1px solid #ccc; }
+textarea.formb-field-textarea[readonly=readonly] { }
+
+img.formb-capcha-img { border: 1px solid #9ebde4; margin: 4px 0; vertical-align: middle; }
+input.formb-capcha-field { padding: 3px; }
+a.formb-capcha-renew { background: url(refresh.png) 0 0 no-repeat; padding-left: 20px; color: white; }
+
+input.formb-field-checkbox { cursor: pointer; }
+label.formb-label-checkbox { cursor: pointer; }
+
+div.formb-field-radiogroup { }
+input.formb-field-radio { cursor: pointer; }
+label.formb-label-radio { display: inline-block; width: 160px; margin: 5px; border-radius: 5px; cursor: pointer; }
+
+div.formb-latlngfield-map { width: 400px; height: 300px; }
+div.formb-latlngfield-display { border-bottom: 1px dashed #ccc; color: #555; line-height: 15px; padding: 0 0 10px 10px; margin-bottom: 10px; font-weight: bolder; }
+div.formb-latlngfield-display span { font-weight: normal; color: #888; }
+
+input.formb-field-file { width: 390px; margin-bottom: 10px; }
+a.formb-field-file-add-bt { background: url(add.png) no-repeat; display: inline-block; width: 16px; height: 16px; padding-left: 20px; margin-left: 5px; }
+
+table.formb-field-table { margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; vertical-align: baseline; border-collapse: collapse; border: 1px solid #000; border-spacing: 0; }
+table.formb-field-table th, table.formb-field-table td { border: 1px solid #000; padding: 7px; }
+table.formb-field-table th { background-color: #eee; }
+input.formb-field-table-input { }
+
+input.formb-field-tagselector { }
+
+ul.formb-field-imageselector-area { margin-top: 5px; background: red; }
+li.formb-field-imageselector-img { list-style-type: none; cursor: move; width: 80px; height: 80px; border: 1px solid #ccc; float: left; margin: 0 8px 8px 0; }
+li.formb-field-imageselector-img a { float: right; background: #fff; cursor: pointer; border: 1px solid #ccc; padding: 2px; border-top: none; border-right: none; }
+
+form div.formb-field-checkboxlist[javascriptyzed] { border: 1px solid #ccc; padding: 5px; width: 200px; }
+
+/* jQuery UI Autocomplete */
+
+.ui-autocomplete-loading { background: white url(wait_16x16.gif) right center no-repeat; }
+
+.ui-autocomplete {
+	max-height: 200px;
+	overflow-y: auto;
+}
+* html .ui-autocomplete {
+	height: 200px;
+	overflow: auto;
+}
+
+/* FromBuilder - Password strength */
+
+.formb-pwdstrength-0 { background:url(pwd-strength.png) no-repeat 0 0; width: 138px; height: 7px; }
+.formb-pwdstrength-10 { background-position:0 -7px; }
+.formb-pwdstrength-20 { background-position:0 -14px; }
+.formb-pwdstrength-30 { background-position:0 -21px; }
+.formb-pwdstrength-40 { background-position:0 -28px; }
+.formb-pwdstrength-50 { background-position:0 -35px; }
+.formb-pwdstrength-60 { background-position:0 -42px; }
+.formb-pwdstrength-70 { background-position:0 -49px; }
+.formb-pwdstrength-80 { background-position:0 -56px; }
+.formb-pwdstrength-90 { background-position:0 -63px; }
+.formb-pwdstrength-100 { background-position:0 -70px; }
+
+/* FromBuilder - Other elements */
+
+span.formb-mandatory { color: orange; }
+span.formb-error { font-size: 10px; color: red; }
+div.formb-separator { font-size: 14px; font-weight: bolder; border-bottom: 1px dotted #ccc; padding-bottom: 4px; color: #588ddd; }
+
+/* FormBuilder - Autocomplete */
+
+.ui-autocomplete { z-index: 3 !important; }
+
+/* FormBuilder - Uploadify */
+
+form.formb-form .uploadifyQueueItem {
+	background-color: #F5F5F5;
+	border: 2px solid #E5E5E5;
+	font: 11px Verdana, Geneva, sans-serif;
+	margin-top: 5px;
+	padding: 10px;
+	width: 350px;
+}
+form.formb-form .uploadifyError {
+	background-color: #FDE5DD !important;
+	border: 2px solid #FBCBBC !important;
+}
+form.formb-form .uploadifyQueueItem .cancel {
+	float: right;
+}
+form.formb-form .uploadifyQueue .completed {
+	background-color: #E5E5E5;
+}
+form.formb-form .uploadifyProgress {
+	background-color: #E5E5E5;
+	margin-top: 10px;
+	width: 100%;
+}
+form.formb-form .uploadifyProgressBar {
+	background-color: #0099FF;
+	height: 3px;
+	width: 1px;
+}
+
+/* FormBuilder - DIV Layout */
+
+div.formb-divlayout-label { float: left; text-align: right; font-weight: bolder; margin-top: 15px; padding-top: 4px; clear: left; }
+div.formb-divlayout-label label { }
+
+div.formb-divlayout-field { float: left; margin-left: 10px; margin-top: 15px; }
+
+div.formb-divlayout-prependtext { font-size: 11px; color: gray; margin: 4px; }
+div.formb-divlayout-appendtext { font-size: 11px; color: gray; margin: 4px; }
+
+div.formb-divlayout-buttons { clear: both; padding-top: 10px; }
+div.formb-divlayout-buttons input { border: 1px solid #ccc; border-top: 3px solid #ccc; padding: 2px 6px; background-color: #eee; cursor: pointer; border-radius: 5px; }
+div.formb-divlayout-buttons input + input { margin-left: 10px; }
+div.formb-divlayout-buttons input.formb-divlayout-button-cancel { }
+div.formb-divlayout-buttons input.formb-divlayout-button-reset { }
+div.formb-divlayout-buttons input.formb-divlayout-button-submit  { padding: 2px 8px 2px 22px; font-weight: bolder; background: #eee url(accept.png) 2px 1px no-repeat; }
+div.formb-divlayout-buttons input:hover { background-color: #fff; border-top: 3px solid #eee; border-color: #ddd; }
+div.formb-divlayout-buttons input:active { background-color: #bbb; color: #fff; }
+*.formb-divlayout-fielderror { border: 1px solid red; }
+
+/* FormBuilder - Liquid Layout */
+
+.formb-layout-liquid > div { display: block; position: relative; float: left; margin: 8px 0 0 0; padding: 0; }
+
+.formb-layout-liquid .formb-field-text { width: 90%; max-width: 300px; }
+
+.formb-layout-liquid .formb-field-select { width: 90%; max-width: 300px; }
+
+.formb-layout-liquid .formb-separator { border: none; padding-top: 15px; color: #333; }
+
+.formb-layout-liquid .formb-liquidlayout-label { padding-bottom: 3px; }
+
+div.formb-liquidlayout-buttons { clear: both; padding-top: 20px; width: 100%; display: block; float: none; }
+div.formb-liquidlayout-buttons input { border: 1px solid #ccc; border-top: 3px solid #ccc; padding: 2px 6px; background-color: #eee; cursor: pointer; border-radius: 5px; }
+div.formb-liquidlayout-buttons input + input { margin-left: 10px; }
+div.formb-liquidlayout-buttons input.formb-liquidlayout-button-cancel { }
+div.formb-liquidlayout-buttons input.formb-liquidlayout-button-reset { }
+div.formb-liquidlayout-buttons input.formb-liquidlayout-button-submit { padding: 2px 8px 2px 22px; font-weight: bolder; background: #eee url(accept.png) 2px 1px no-repeat; }
+div.formb-liquidlayout-buttons input:hover { background-color: #fff; border-top: 3px solid #eee; border-color: #ddd; }
+div.formb-liquidlayout-buttons input:active { background-color: #bbb; color: #fff; }
+*.formb-liquidlayout-fielderror { border: 1px solid red; }
+
+div.formb-liquidlayout-prependtext { font-size: 11px; color: gray; margin: 4px; }
+div.formb-liquidlayout-appendtext { font-size: 11px; color: gray; margin: 4px; }
+
+/* FormBuilder - Ext */
+
+#userFormWait { display: block; width: 16px; height: 16px; background: #fff url(wait_16x16.gif) 0 0 no-repeat; }

@@ -1,0 +1,61 @@
+
+body#wg #container header ul#menu > li.module-core:before { content: "(" !important; }
+
+.color-sample {
+	display: inline-block;
+	height: 10px;
+	width: 20px;
+	border: 1px solid #ccc;
+}
+
+/* Terminal */
+
+#main #view-monitor table#term {
+	background: #1A74A7;
+	border-radius: 2px;
+}
+
+#main #view-monitor table#term tr,
+#main #view-monitor table#term td {
+	border: none;
+}
+
+#main #view-monitor table#term tr#term-out {
+	height: 300px;
+}
+
+#main #view-monitor table#term tr#term-out textarea {
+	display: block;
+	width: 100%;
+	padding: 0;
+	min-height: 100px;
+	height: 100%;
+	border: none;
+	margin-top: 5px;
+	resize: vertical;
+	font-size: 12px;
+}
+
+#main #view-monitor table#term tr#term-in span {
+	color: #fff;
+}
+
+#main #view-monitor table#term tr#term-in input[type="text"],
+#main #view-monitor table#term tr#term-in input[type="password"] {
+	display: block;
+	width: 100%;
+	border: none;
+	height: 18px;
+}
+
+/* Nightmode */
+
+body#wg[nightmode="on"] #main table#term {
+	background: #333;
+}
+
+body#wg[nightmode="on"] #main #view-monitor table#term tr#term-out textarea,
+body#wg[nightmode="on"] #main #view-monitor table#term tr#term-in input[type="text"] {
+	background: #666;
+	color: #eee;
+}

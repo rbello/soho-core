@@ -1,0 +1,49 @@
+{
+	"moduleName": "dashboard",
+	"moduleVersion": "1.0",
+	"vendorName": "evolya.fr",
+	"vendorURL": "http://evolya.fr/",
+	"cronjobs": {
+		"rss_reader": {
+			"script": "modules/dashboard/cron.rss_reader.php",
+			"description": "RSS News Reader",
+			"frequency": "hourly",
+			"disabled" : true
+		}
+	},
+	"menu": [
+		{
+			"label": "Dashboard",
+			"view": "dashboard",
+			"position": 1
+		}
+	],
+	"models": {
+		"Widget": "modules/dashboard/model.widget.php"
+	},
+	"stylesheets": [ "modules/dashboard/dashboard.css" ],
+	"vars": {
+		"defaultView": "dashboard",
+		"rss_description_length": 400,
+		"rss_feeds": [
+			{
+				"name": "A List Apart",
+				"url": "http://www.alistapart.com/site/rss"
+			},
+			{
+				"name": "CSS Tricks",
+				"url": "http://feeds.feedburner.com/CssTricks?format=xml"
+			}
+		]
+	},
+	"views": {
+		"dashboard": {
+			"script": "modules/dashboard/view.dashboard.php",
+			"requireFlags": "u"
+		},
+		"widgetmanager": {
+			"script": "modules/dashboard/view.widget-manager.php",
+			"requireFlags": "u"
+		}
+	}
+}

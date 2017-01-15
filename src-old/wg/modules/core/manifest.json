@@ -1,0 +1,405 @@
+{
+
+	"vars": {
+		"appVersion": "3.1",
+		"defaultView": {
+			"value": "team",
+			"overridable": true
+		},
+		"session_age": {
+			"value": 800000,
+			"deprecated": true
+		}
+	},
+
+	"hosts": {
+		"dev": {
+			"host": "localhost|192.168.0.*",
+			"appurl": {
+				"type": "url",
+				"value": "http://{$base.host}/xxx.workgroop/src/"
+			},
+			"db_host": "localhost",
+			"db_user": "root",
+			"db_pwd": {
+				"value": "jj41Sm:88",
+				"isPassword": true
+			},
+			"db_name": "soho",
+			"db_prefix": "soho_",
+			"error_reporting": "E_ALL",
+			"public_realm": {
+				"value": "Restricted Area",
+				"overridable": true
+			},
+			"dev_mode": true,
+			"contact_email": {
+				"value": "contact@xxx.fr",
+				"overridable": true
+			},
+			"appName": {
+				"value": "SoHo",
+				"overridable": true
+			},
+			"appOwner": {
+				"value": "The SoHo Team",
+				"overridable": true
+			},
+			"branding_icons": {
+				"16": "data/public/16-full-color.png",
+				"19": "data/public/icon.png",
+				"25": "data/public/logo.jpg",
+				"32": "data/public/32-full-color.png",
+				"48": "data/public/48-full-color.png"
+			},
+			"enable_custom_security_policy": true,
+			"timezone": {
+				"value": "America/Montreal",
+				"overridable": true,
+				"type": "timezone"
+			},
+			"mimo_account_username": "soho",
+			"quota_dir": "/home/ted/www/xxx.workgroop",
+			"enable_app_cache": {
+				"value": false,
+				"overridable": true
+			}
+		},
+		"prod": {
+			"host": "workshop.xxx.fr",
+			"appurl": {
+				"type": "url",
+				"value": "http://workshop.xxx.fr/"
+			},
+			"sslurl": {
+				"type": "url",
+				"value": "https://workshop.xxx.fr/"
+			},
+			"db_host": "xxx",
+			"db_user": "xxxdbo",
+			"db_pwd": {
+				"value": "xxx",
+				"isPassword": true
+			},
+			"db_name": "xxxdbo",
+			"db_prefix": "mimo_",
+			"error_reporting": 0,
+			"public_realm": {
+				"value": "Restricted Area",
+				"overridable": true
+			},
+			"dev_mode": false,
+			"contact_email": {
+				"value": "contact@xxx.fr",
+				"overridable": true
+			},
+			"default": false,
+			"appName": {
+				"value": "SoHo",
+				"overridable": true
+			},
+			"appOwner": {
+				"value": "The SoHo Team",
+				"overridable": true
+			},
+			"branding_icons": {
+				"16": "data/public/16-full-color.png",
+				"19": "data/public/icon.png",
+				"25": "data/public/logo.jpg",
+				"32": "data/public/32-full-color.png",
+				"48": "data/public/48-full-color.png"
+			},
+			"enable_custom_security_policy": false,
+			"timezone": "Europe/Paris",
+			"mimo_account_username": "mimo",
+			"quota_dir": "/homez.221/xxx",
+			"enable_app_cache": {
+				"value": true,
+				"overridable": true
+			}
+		},
+		"blog": {
+			"host": "blog.xxx.fr",
+			"appurl": {
+				"type": "url",
+				"value": "http://blog.xxx.fr/"
+			},
+			"sslurl": {
+				"type": "url",
+				"value": "https://blog.xxx.fr/"
+			},
+			"db_host": "xxx",
+			"db_user": "xxxdbo",
+			"db_pwd": {
+				"value": "xxx",
+				"isPassword": true
+			},
+			"db_name": "xxxdbo",
+			"db_prefix": "mimo_",
+			"error_reporting": 0,
+			"public_realm": {
+				"value": "Restricted Area",
+				"overridable": true
+			},
+			"dev_mode": false,
+			"contact_email": {
+				"value": "contact@xxx.fr",
+				"overridable": true
+			},
+			"default": false,
+			"appName": {
+				"value": "SoHo",
+				"overridable": true
+			},
+			"appOwner": {
+				"value": "The SoHo Team",
+				"overridable": true
+			},
+			"branding_icons": {
+				"16": "data/public/16-full-color.png",
+				"19": "data/public/icon.png",
+				"25": "data/public/logo.jpg",
+				"32": "data/public/32-full-color.png",
+				"48": "data/public/48-full-color.png"
+			},
+			"enable_custom_security_policy": false,
+			"timezone": "Europe/Paris",
+			"mimo_account_username": "mimo",
+			"quota_dir": "/homez.221/xxx",
+			"enable_app_cache": {
+				"value": true,
+				"overridable": true
+			}
+		}
+	},
+
+	"modules": {
+
+		"core": {
+			"moduleName": "core",
+			"moduleVersion": "1.0",
+			"vendorName": "xxx.fr",
+			"vendorURL": "http://xxx.fr/",
+			"cronjobs": {
+				"mailer_service": {
+					"script": "modules/core/cron.email.php",
+					"description": "Email service",
+					"queue_model": "EmailCronTask",
+					"frequency": "minute"
+				},
+				"apikey_changer": {
+					"script": "modules/core/cron.apikey.php",
+					"description": "Change team members' API key",
+					"mail-title": "[MIMO] Your API key has changed !",
+					"mail-template": "modules/core/apikey-change-mail.tpl",
+					"frequency": "bi-monthly",
+					"disabled": true
+				},
+				"database_backup": {
+					"script": "modules/core/cron.databasebackup.php",
+					"description": "Backup database",
+					"frequency": "weekly"
+				}
+			},
+			"stores": [
+				{
+					"name": "app-cache",
+					"type": "serialized-php",
+					"description": "Cache d'application de SoHo : mémorise les manifests des modules pour éviter l'initialisation complète à chaque fois"
+				},
+				{
+					"name": "crondata",
+					"type": "serialized-php",
+					"description": "Mémorise les dates des derniers lancements des tâches CRON"
+				}
+			],
+			"live": [
+				{
+					"name": "croninfo",
+					"description": "Les dates des dernières exécutions des tâches CRON.",
+					"script": "modules/core/live.croninfo.php"
+				},
+				{
+					"name": "cpumem",
+					"description": "Les charges CPU et mémoire.",
+					"script": "modules/core/live.cpu-mem.php"
+				}
+			],
+			"menu" : [
+				{
+					"label": "Core",
+					"view": "monitor",
+					"requireFlags": "a",
+					"position": 80,
+					"sub": [
+						{ "label": "Monitor", "view": "monitor", "requireFlags": "a" },
+						{ "label": "Team", "view": "team", "requireFlags": "a" },
+						{ "label": "Shell", "view": "shell", "requireFlags": "Z" },
+						{ "label": "Styleguide", "view": "styleguide", "requireFlags": "u" },
+						{ "label": "Database", "view": "database", "requireFlags": "S" },
+						{ "label": "Security Audit", "view": "secaudit", "requireFlags": "a" },
+						{ "label": "Tools", "view": "tools", "requireFlags": "u" },
+						{ "label": "Config", "view": "vars", "requireFlags": "S" }
+					]
+				}
+			],
+			"models": {
+				"TeamMember": "modules/core/model.teammember.php",
+				"TeamMember_Extra": "modules/core/model.teammember_extra.php",
+				"UserGroup": "modules/core/model.user_group.php",
+				"UserSession": "modules/core/model.user_session.php",
+				"EmailCronTask": "modules/core/model.emailcrontask.php",
+				"Log": "modules/core/model.log.php",
+				"Store": "modules/core/model.store.php"
+			},
+			"vars": {
+				"emailcron_send_per_exec": {
+					"var_desc": "nombre d'email envoyés à chaque execution de la tâche CRON",
+					"value": 5,
+					"overridable": true
+				},
+				"ui_ws_refresh": {
+					"var_desc": "Delai de refresh d'une session",
+					"value": 30,
+					"overridable": true
+				}
+			},
+			"views": {
+				"login": {
+					"script": "modules/core/view.login.php",
+					"distribution": "REFRESH"
+				},
+				"team": {
+					"script": "modules/core/view.team.php",
+					"requireFlags": "a"
+				},
+				"monitor": {
+					"script": "modules/core/view.monitor.php",
+					"requireFlags": "a",
+					"distribution": "KEEP_ALIVE"
+				},
+				"shell": {
+					"script": "modules/core/view.shell.php",
+					"requireFlags": "Z",
+					"disabled": true
+				},
+				"styleguide": {
+					"script": "modules/core/view.styleguide.php",
+					"requireFlags": "u",
+					"distribution": "KEEP_ALIVE"
+				},
+				"database": {
+					"script": "modules/core/view.database.php",
+					"requireFlags": "S",
+					"distribution": "KEEP_ALIVE"
+				},
+				"secaudit": {
+					"script": "modules/core/view.secaudit.php",
+					"requireFlags": "a"
+				},
+				"tools": {
+					"script": "modules/core/view.tools.php",
+					"requireFlags": "u"
+				},
+				"vars": {
+					"script": "modules/core/view.vars.php",
+					"requireFlags": "S"
+				}
+			},
+			"stylesheets": [ "modules/core/core.css" ],
+			"webservices": {
+				"lastlog": {
+					"script": "modules/core/ws.lastlog.php",
+					"method": "both",
+					"requireFlags": "u",
+					"returnType": "text/xml",
+					"description": "Let's download last logs. Require authentication or personnal API key.",
+					"disabled": true
+				},
+				"auth": {
+					"script": "modules/core/ws.auth.php",
+					"method": "post",
+					"returnType": "application/json",
+					"aesSupport": true,
+					"description": "User authentication service."
+				},
+				"welcome": {
+					"script": "modules/core/ws.welcome.php",
+					"method": "both",
+					"requireFlags": "u",
+					"returnType": "application/json",
+					"aesSupport": true,
+					"description": "Helps clients to retreive their session data."
+				},
+				"live": {
+					"script": "modules/core/ws.live.php",
+					"method": "both",
+					"requireFlags": "u",
+					"returnType": "application/json",
+					"aesSupport": true,
+					"description": "Permet de récupérer des events du serveur."
+				},
+				"exec-cmd": {
+					"script": "modules/core/ws.exec-cmd.php",
+					"method": "both",
+					"requireFlags": "a",
+					"returnType": "application/json",
+					"aesSupport": true,
+					"description": "Execute des commandes sur le système."
+				},
+				"mysql-adminer": {
+					"script": "modules/core/phpminiadmin.php",
+					"method": "both",
+					"requireFlags": "S",
+					"returnType": "text/html",
+					"aesSupport": false,
+					"description": "Administration MySQL",
+					"disabled": true
+				}
+			},
+			"widgets": {
+				"LastLogsWidget": {
+					"script": "modules/core/widget.lastlogs.php",
+					"title": "Last logs",
+					"icon72x72": "modules/dashboard/public/get_smart.png",
+					"desc": "Les derniers logs de la partyline."
+				}
+			},
+			"flags": [
+				{
+					"flag": "a",
+					"name": "Admin",
+					"description": "Administrateur.",
+					"level": 800
+				},
+				{
+					"flag": "b",
+					"name": "Beta",
+					"description": "Flag donnant accès aux fonctionnalités en BETA."
+				},
+				{
+					"flag": "S",
+					"name": "SystemAdmin",
+					"description": "Administrateur système. Donne accès aux fonctions de monitoring.",
+					"level": 900
+				},
+				{
+					"flag": "u",
+					"name": "User",
+					"description": "Flag par défaut pour les utilisateurs de SoHo. Ce flag permet d'ouvrir une session. Il est utilisé par la majorité des vues/webservices.",
+					"default": true,
+					"level": 100
+				},
+				{
+					"flag": "Z",
+					"name": "Extra",
+					"description": "Flag correspondant au pouvoir exceptionnel, qui permet d'utiliser des fonctionnalitées très avancées (comme le shell) normalement réservées à l'utilisateur root.",
+					"hidden": true,
+					"level": 1000
+				}
+			]
+		}
+
+	}
+
+}
