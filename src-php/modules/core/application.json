@@ -14,7 +14,7 @@
             
         }
     },
-    "@entities": {
+    "@objects": {
         "TeamMember": "{base}/model.teammember.php"
     },
     "@scheduled-tasks": {
