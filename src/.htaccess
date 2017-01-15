@@ -1,0 +1,8 @@
+# Enable PHP 5
+SetEnv PHP_VER 5_3
+
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{HTTP:Authorization} ^(.*)
+RewriteRule .* - [E=REMOTE_USER:%{HTTP:Authorization},L]
+</IfModule>
