@@ -118,15 +118,15 @@
 				"overridable": true
 			}
 		},
-		"blog": {
-			"host": "blog.xxx.fr",
+		"integration": {
+			"host": "soho-core-rbello.c9users.io",
 			"appurl": {
 				"type": "url",
-				"value": "http://blog.xxx.fr/"
+				"value": "http://soho-core-rbello.c9users.io/src-old/"
 			},
 			"sslurl": {
 				"type": "url",
-				"value": "https://blog.xxx.fr/"
+				"value": "https://soho-core-rbello.c9users.io/src-old/"
 			},
 			"db_host": "xxx",
 			"db_user": "xxxdbo",
