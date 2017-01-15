@@ -1,8 +1,8 @@
 composer.lock
 .git/
 .c9/
-src/data/*
-!src/data/.htaccess
-src/config/config.php
-src/lib/*
-!src/lib/.htaccess
+src-php/data/*
+!src-php/data/.htaccess
+src-php/config/config.php
+src-php/lib/*
+!src-php/lib/.htaccess
