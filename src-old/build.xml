@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="SoHo">
+
+	<property name="project.version" value="3.1.30" />
+	<property name="project.url" value="http://soho.evolya.fr/" />
+	<property name="project.status" value="stable, release, active" />
+
+	<property name="project.description"><![CDATA[
+
+	<h2>SoHo</h2>
+
+	<p><b>SoHo</b> est une application PHP jouant le rôle de <em>Conteneur d'application</em>. Il s'agit
+	d'un serveur PHP offrant une version cliente en JavaScript/HTML5 permettant d'utiliser des applications
+	modulaires. SoHo permet de faciliter la création de micro-applications qui s'intégrent dans un cadre
+	commun, et qui peuvent être composée des éléments suivants :
+
+	<ul>
+		<li>Des <b>vues</b>, qui sont des pages HTML dynamiques offrant toutes les interractions possibles
+		de manière asynchrone ;
+		<li>Des <b>modèles</b>, qui sont de réprésentations objet d'une base de donnée, et qui permettent
+		de manipuler facilement des données avec MySQL. Pour ce faire, SoHo utilise la lib evolya.moodel ;
+		<li>Des <b>webservices</b>, qui servent à executer des micro-operations ou bien à répatrier des
+		données brutes (XML par exemple), et qui sont utilisés par l'application cliente de manière asynchrone ;
+		<li>Des <b>menus</b>, qui s'organisent suivant une hierarchie précise en fonction des droits des
+		utilisateurs,
+		<li>Des <b>tâches cron</b>, qui offrent la possibilité de réaliser des tâches de fond suivant une
+		fréquence pré-déterminée ;
+		<li>Des <b>ACL</b>, grâce au système de <em>flags</em> qui permet de limiter l'accès à toutes les
+		ressources en fonction des droits des utilisateurs ;
+		<li>Des <b>events côté serveur</b>, appelé aussi le <em>Live! Service</em>, et qui permet au client
+		d'être informé en temps réel des mises à jours côté serveur, permettant la réalisation d'applications
+		partagées multi-utilisateur.
+	</ul>
+
+	<p>Le conteneur SoHo est construit pour être léger et facile d'utilisation. Ainsi, toutes les méthodes
+	d'utilisation sont statiques, et peuvent être appelées sans avoir à posséder une instance précise.
+	Ensuite, le chargement des modules et l'exécution des politiques de sécurité ne se fait que sur demande,
+	résumant l'initialisation de SoHo à la simple inclusion du fichier <code>starter.php</code>.
+
+	<p>L'application propose une api en CLI qui se trouve dans <code>src/wg/cli/</code>.</p>
+
+	<p>L'interface de la classe <b>WG</b> décompose chaque opération, laissant la liberté d'accès à toutes
+	les fonctionnalitées. Toute l'application repose sur le système de <b>modules</b>, et sur la déclaration
+	des modules dans un fichier <code>manifest.json</code> qui regroupe toutes les composantes de l'application.
+
+	<h3>Accounts</h3>
+	<p>Les comptes <code>remi</code> et <code>root</code> ont le mot de passe <code class="pwd">toor</code>
+	par défaut sur la config de dev.
+
+	<h3>Répertoires</h3>
+	<p>Le projet est réparti dans plusieurs répertoires contenant chacun une partie individuelle
+	séparable du reste. Le fichier de build faisant le liens entre les composants.
+
+	<ul>
+		<li><var>build</var> :
+			Ce répertoire contient les differents builds du projet. Le fichier build.xml ne contient
+			pas de tâche clean, permettant ainsi de remonter dans l'historique des versions.
+
+		<li><var>crx</var> :
+			Ce répertoire contient l'extension Google Chrome pour SoHo. La tâche <code>build-ext</code>
+			permet de créer une version distribuable de l'extension. C'est aussi cette tâche qui va
+			mettre à jour le fichier de l'extension dans le répertoire <code>src</code>.
+
+		<li><var>css</var> :
+			Ce répertoire contient les fichiers de feuilles de styles (CSS) au format SASS. La tâche
+			<code>build-css</code> permet de compiler la feuille de style, d'en créer une version
+			compactée, et de la copier dans le répertoire <code>src</code>.
+
+		<li><var>ext</var> :
+			Ce répertoire contient des librairies ou des utilitaires qui servent pour les processus
+			de build.
+
+		<li><var>install</var> :
+			Ce répertoire contient les tâches d'installation de SoHo sur une nouveau serveur. La tâche
+			<code>install</code> lance l'execution de ces scripts.
+
+		<li><var>js</var> :
+			Ce répertoire contient l'application cliente de SoHo, c'est à dire le script de lancement
+			JavaScript qui permet l'initialisation et l'utilisation de l'appli SoHo sur le navigateur du client.
+			Globalement, la <em>partie JavaScript de SoHo</em> est appelée <b>WG.js</b>.
+			Il y a deux tâches build correspondantes : <code>build-js</code> et <code>build-js-pack</code> qui
+			servent respectivement à créer un build des sources JavaScripts, et à produire un build compacté.
+
+		<li><var>misc</var> :
+			Ce répertoire contient des fichiers divers concernant le projet. Il contient entre autre, les logos
+			et autre composants visuels au format raw (PSD), ainsi qu'une sauvegarde de la version 2.0 du projet (MIMO).
+
+		<li><var>plug</var> :
+			Le <b>Plug</b> est une application cliente qui permet de travailler sur les sources d'un projet hébergé
+			sur un repository SoHo. Présentée sous la forme d'un terminal bash, elle permet de réaliser les tâches
+			suivantes : récupération de la liste des projets du repository, téléchargement des sources, synchronisation
+			des données clientes avec le serveur, subversion, incrément de version automatique, execution des tâches
+			build des projets (grâce à octophpus), recherche dans l'historique d'un fichier, etc...
+			La tâche <code>build-plug</code> créé une version distributable du plug, et la copie dans le répertoire
+			<code>src</code> du projet.
+
+		<li><var>src</var> :
+			Ce répertoire contient les sources PHP du serveur SoHo. Pour plus de détails, voir le document explicatif
+			concernant les modules et la déclaration des fichiers <code>manifest.json</code>.
+	</ul>
+
+	<h3>Versions</h3>
+	<ol>
+		<li><b>V1.0 &laquo;MIMO&raquo;</b> Version SBO (Fin 2010)
+		<li><b>V2.0</b> Découpage en modules, modules mail, files, music, packages (Milieu 2011)
+			Separation entre MIMO et les applications du module SBO. Le coeur du projet est
+			appelé <b>WorkgrOOp</b>, ce qui a donné le préfixe <b>WG</b>.
+		<li><b>V3.0 &laquo;SoHo&raquo;</b> Nouveau moteur JavaScript (Fin 2011)
+	</ol>
+
+	<p>Création du projet: 2010
+
+	]]></property>
+
+	<property name="src.dir" value="${project.dir}/src/" />
+	<property name="js.dir" value="${project.dir}/js/" />
+	<property name="css.dir" value="${project.dir}/css/" />
+	<property name="ext.dir" value="${project.dir}/crx/" />
+	<property name="plug.dir" value="${project.dir}/plug/plugv5/" />
+	<property name="build.dir" value="${project.dir}/build/" />
+	<property name="build.file" value="${build.dir}/WG-${project.version}.js" />
+	<property name="changelog.file" value="${project.dir}/CHANGELOG.txt" />
+	<property name="bugtracker.name" value="Bugs SoHo" />
+
+	<target name="about" description="Display some info about this project">
+		<echo>Project name: ${project.name}</echo>
+		<echo>Current version: ${project.version}</echo>
+		<echo>Description:</echo>
+		<echo>${project.description}</echo>
+	</target>
+
+	<target name="clean" description="Remove all temporary files">
+
+		<!-- cache -->
+		<delete dir="${src.dir}/cache" />
+		<mkdir dir="${src.dir}/cache" />
+		
+		<!-- /data/ -->
+		<delete dir="${src.dir}/data/subversion" />
+		<mkdir dir="${src.dir}/data/subversion" />
+		<copy srcfile="${src.dir}/wg/.htaccess" destdir="${src.dir}/data/subversion" />
+		<delete dir="${src.dir}/data/attach" />
+		<mkdir dir="${src.dir}/data/attach" />
+		<copy srcfile="${src.dir}/wg/.htaccess" destdir="${src.dir}/data/attach" />
+		<delete dir="${src.dir}/data/video-thumbs" />
+		<mkdir dir="${src.dir}/data/video-thumbs" />
+		<copy srcfile="${src.dir}/data/team/index.html" destdir="${src.dir}/data/video-thumbs" />
+		
+		<!-- /wg/data/ -->
+		<delete dir="${src.dir}/wg/data/db_backup" />
+		<mkdir dir="${src.dir}/wg/data/db_backup" />
+		<delete dir="${src.dir}/wg/data/esign_lock" />
+		<mkdir dir="${src.dir}/wg/data/esign_lock" />
+		<delete dir="${src.dir}/wg/data/links" />
+		<mkdir dir="${src.dir}/wg/data/links" />
+		<delete dir="${src.dir}/wg/data/keyrings" />
+		<mkdir dir="${src.dir}/wg/data/keyrings" />
+		<delete dir="${src.dir}/wg/data/logs-ovh" />
+		<mkdir dir="${src.dir}/wg/data/logs-ovh" />
+		<delete dir="${src.dir}/wg/data/persistence" />
+		<mkdir dir="${src.dir}/wg/data/persistence" />
+
+		<!-- /wg/data/*.log -->
+		<delete file="${src.dir}/wg/data/wgcrt.log" />
+		<delete file="${src.dir}/wg/data/wgcrt-debug.log" />
+		<delete file="${src.dir}/wg/data/live.bench" />
+		<delete file="${src.dir}/wg/data/cron.log" />
+
+		<!-- /wg/data/*.dat -->
+		<delete file="${src.dir}/wg/data/rss-feeds.dat" />
+		<delete file="${src.dir}/wg/data/pagerank.dat" />
+		
+		<!-- /wg/modules/ -->
+		<delete dir="${src.dir}/wg/modules/sbospy/sbomail" />
+		<mkdir dir="${src.dir}/wg/modules/sbospy/sbomail" />
+		<delete dir="${src.dir}/wg/modules/newsreader/cache" />
+		<mkdir dir="${src.dir}/wg/modules/newsreader/cache" />
+		<delete dir="${src.dir}/wg/modules/browser/cache" />
+		
+	</target>
+
+	<target name="src" depends="src-octophpus, src-moodel, src-formbuilder, src-corp" description="Get latest dependencies">
+	    <!-- Libs du plug -->
+	    <copy srcfile="${src.dir}/wg/inc/common.php" destdir="${plug.dir}/lib/" />
+	    <copy srcfile="${src.dir}/wg/modules/codedev/class.softwarepackage.php" destdir="${plug.dir}/lib/" />
+	    <copy srcfile="${src.dir}/wg/cli/cli-api.php" destdir="${plug.dir}/lib/" />
+	</target>
+
+	<target name="src-formbuilder" display="none">
+		<!--<run buildFile="${workspace.dir}/evolya.formbuilder/build.xml" target="build" />
+		<copy srcfile="${workspace.dir}/evolya.formbuilder/build/formbuilder-2.0.14.php" destdir="${src.dir}/wg/inc/" />-->
+	</target>
+
+	<target name="src-moodel" display="none">
+		<run buildFile="${workspace.dir}/evolya.moodel/build.xml" target="compile" />
+		<copy srcfile="${workspace.dir}/evolya.moodel/build/Moodel.php" destdir="${src.dir}/wg/inc/" />
+	</target>
+
+	<target name="src-octophpus" display="none">
+		<run buildFile="${workspace.dir}/evolya.octophpus/build.xml" target="obfuscate" />
+		<!-- Copié dans les sources pour le module activity (vue 'projects') -->
+		<copy srcfile="${workspace.dir}/evolya.octophpus/build/octophpus-current.php" destdir="${src.dir}/wg/inc/" />
+		<!-- Copié dans les sources du plug -->
+		<copy srcfile="${workspace.dir}/evolya.octophpus/build/octophpus-current.php" destdir="${plug.dir}/lib/" newname="octophpus.php" />
+	</target>
+	
+	<target name="src-corp" display="none">
+			<run buildFile="${workspace.dir}/evolya.corpsecurity/build.xml" target="dist" />
+			<copy srcfile="${workspace.dir}/evolya.corpsecurity/dist/corpsecurity.phar" destdir="${src.dir}/wg/inc/" />
+		</target>
+
+	<target name="install" description="Install SoHo database">
+		<echo>Start Core package...</echo>
+		<include file="${src.dir}/wg/starter.php" />
+		<echo>Install database...</echo>
+		<include file="${project.dir}/install/install.db.php" />
+		<echo>Create users accounts...</echo>
+		<include file="${project.dir}/install/install.users.php" />
+	</target>
+
+	<target name="build-js" description="Build WG.js file">
+		<mkdir dir="${build.dir}" />
+		<buffer outputfile="${build.file}">
+			<append readfile="${js.dir}/core.js" />
+			<append readfile="${js.dir}/util.js" />
+			<append readfile="${js.dir}/security.js" />
+			<append readfile="${js.dir}/ui.js" />
+			<append readfile="${js.dir}/ui.view.js" />
+			<append readfile="${js.dir}/ui.trayicon.js" />
+			<!-- <append readfile="${js.dir}/ui.windows.js" /> -->
+			<append readfile="${js.dir}/live.js" />
+			<append readfile="${js.dir}/search.js" />
+		</buffer>
+		<echo>Sources compiled: ${build.file}</echo>
+		<copy srcfile="${build.file}" destdir="${src.dir}/public/" newname="soho.js" />
+		<echo>Done!</echo>
+	</target>
+
+	<target name="build-js-pack" depends="build-js" description="Build a packed WG.js file">
+		<echo>Javascript compression...</echo>
+		<exec executable="cmd" failonerror="true">
+			<arg value="java -jar" />
+			<arg value="${workspace.dir}/3rdparty.yuicompressor/yuicompressor-2.4.6.jar" />
+			<arg value="${build.file}" />
+			<arg value="-o" escape="false" />
+			<arg value="${build.dir}/WG-${project.version}.pack.js" />
+		</exec>
+		<echo>Sources minified: ${build.dir}/WG-${project.version}.pack.js</echo>
+		<copy srcfile="${build.dir}/WG-${project.version}.pack.js" destdir="${src.dir}/public/" newname="soho.js" />
+		<buffer outputfile="${src.dir}/public/soho.js">
+			<append readfile="${src.dir}/public/soho.js" />
+			<prepend><![CDATA[/**
+ * JavaScript application for SoHo
+ * $Id: core.css,v 3.X ${date-Y}/${date-m}/${date-d} ${date-H}:${date-i}:${date-s} evolya Exp $
+ */
+]]></prepend>
+		</buffer>
+		<echo>Done!</echo>
+	</target>
+
+	<target name="build-css" description="Build core.css file">
+		<echo>Load SASS library...</echo>
+		<include file="${workspace.dir}/3rdparty.sassparser/SassParser.php" />
+		<echo>Parse SCSS and render CSS...</echo>
+		<sass srcfile="${css.dir}/main.scss" destfile="${src.dir}/public/core.css" />
+		<echo>Put additional informations...</echo>
+		<buffer outputfile="${src.dir}/public/core.css">
+			<append readfile="${src.dir}/public/core.css" />
+			<prepend><![CDATA[/**
+ * CSS Stylesheet for SoHo
+ * Includes Modern-Pictograms by thedesignoffice.org (OFL licence)
+ * $Id: soho.js,v 3.X ${date-Y}/${date-m}/${date-d} ${date-H}:${date-i}:${date-s} evolya Exp $
+ */
+@CHARSET "UTF-8";
+]]></prepend>
+			<append readfile="${css.dir}/append.nightmode.css" />
+			<append readfile="${css.dir}/append.keyframes.css" />
+			<append readfile="${css.dir}/append.icons.css" />
+		</buffer>
+	</target>
+
+	<target name="build-ext" description="Make a CRX distributable file for SoHo Chrome Extension">
+		<mkdir dir="${build.dir}" />
+		<echo>Make extension package...</echo>
+		<zip destfile="${build.dir}/soho.crx.zip">
+			<addfile src="${ext.dir}/manifest.json" to="${filename}" />
+		</zip>
+		<echo>Create CRX...</echo>
+		<crx
+			permfile="${project.dir}/crx/mimo-chrome-ext.pem"
+			zipfile="${build.dir}/soho.crx.zip"
+			destfile="${build.dir}/soho.crx" />
+	</target>
+
+	<target name="build-plug" depends="src" description="Update sources with lastest plug">
+		<mkdir dir="${build.dir}" />
+		<zip destfile="${build.dir}/plug.zip">
+			<mkdir dir=".plug/config" />
+			<addfolder src="${plug.dir}/install" to=".plug/install" />
+			<addfolder src="${plug.dir}/lib" to=".plug/lib" />
+			<mkdir dir=".plug/tmp" />
+			<addfolder src="${plug.dir}/www" to=".plug/www" />			
+			<addfile src="${plug.dir}/cli.php" to=".plug/cli.php" />
+			<addfile src="${plug.dir}/plug.sh" to=".plug/plug.sh" />
+			<addfile src="${plug.dir}/index.php" />
+		</zip>
+		<copy srcfile="${build.dir}/plug.zip" destdir="${src.dir}/public/" newname="plug.zip" />
+	</target>
+
+	<target name="keyfile-gen" description="Generate a new RSA keyfile">
+		<include file="${src.dir}/wg/inc/jcryption/generator.php" />
+		<echo>Done!</echo>
+	</target>
+
+</project>

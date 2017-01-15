@@ -1,0 +1,120 @@
+@media screen and (max-width: 640px), screen and (max-device-width: 640px) {
+
+	body#wg #container header {
+
+		/* On masque le nom de l'application */
+		#top #appName {
+			display: none;
+		}
+
+		/* Menu principal, en haut de la page */
+		ul#menu {
+			width: auto;
+			float: none;
+			clear: both;
+			position: relative;
+			border: none;
+			& > li {
+				width: 25px;
+				height: 20px;
+				display: inline-block;
+				background-position: center center;
+				padding: 2px;
+				border: none;
+				position: relative;
+				& > a {
+					width: 25px;
+					height: 20px;
+					text-indent: 55px;
+					overflow: hidden;
+					position: absolute;
+				}
+			}
+			ul {
+				position: fixed;
+				/* Note: les 2px en moins permettent de ne pas quitter la zone quand la souris
+				   va vers les sous-menus (l'affichage d�pends du :hover) */
+				top: $top-height + 25px - 2px;
+				left: 0;
+				width: 100%;
+				li {
+					padding: 3px 5px;
+					margin: 0;
+				}
+			}
+		}
+
+	}
+
+	/* Adapter la largeur du wrapper */
+	body#wg #container #main #wrapper {
+		width: 100%;
+		margin: 0;
+		
+		/* Re-centrer le formulaire de login */
+		form.wgcrt {
+			margin-left: -100px;
+		}
+	}
+
+	/* Adapter l'affichage du PopTop */
+	body#wg #container #poptop {
+		top: 0;
+		font-size: 10px;
+		line-height: 12px;
+	}
+
+	/* Quelques ajustements pour les éléments des vues */
+	body#wg #container #main .view {
+		.rightcommands {
+			margin-top: 6px;
+		}
+		.singlecol, .leftcol, .rightcol {
+			float: none;
+			width: auto;
+			margin: 0;
+			width: 98%;
+			margin: 10px 1% 0 1%;
+		}
+	}
+	
+	/* On masque les options d'affichage */
+	body#wg #container #menuOpts {
+		display: none;
+	}
+
+	/* Adaptation des tableaux
+	 * http://dbushell.com/2012/01/05/responsive-tables-2/ */
+	body#wg #container #main .view table {
+		display: block;
+		position: relative;
+		width: 100%;
+		margin: 0;
+		thead {
+			display: block;
+			float: left;
+			tr {
+				display: block;
+			}
+		}
+		tbody {
+			display: block;
+			width: auto;
+			position: relative;
+			overflow-x: auto;
+			white-space: nowrap;
+			tr {
+				display: inline-block;
+				vertical-align: top;
+			}
+		}
+		th {
+			display: block;
+		}
+		td {
+			display: block;
+			min-height: 1.25em;
+		}
+	}
+
+}

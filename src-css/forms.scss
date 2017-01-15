@@ -1,0 +1,235 @@
+
+body#wg #container #main .view {
+
+	textarea.elastic { height: 18px; }
+
+	/**
+	 * Styles bouton classique
+	 */
+	.button {
+		font-size: 1em;
+		background-color: #eee;
+		padding: 3px 6px;
+		text-decoration: none;
+		border: 1px solid #ccc;
+		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;
+		border-radius: 5px;
+		color: #333;
+	}
+	.button:hover { background-color: #fff; color: $soho-blue; }
+	.button:active { background-color: #aaa; color: #fff; }
+	.button img { vertical-align: -2px; }
+	.button.wait {
+		background-image: url(wait.gif);
+		background-repeat: no-repeat;
+		background-position: 4px center;
+		padding-left: 24px;
+	}
+
+	/**
+	 * Styles bouton bleu
+	 */
+	.button-blue {
+		font-size: 1em;
+		background-color: $soho-blue;
+		padding: 3px 6px;
+		text-decoration: none;
+		border: none;
+		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;
+		border-radius: 5px;
+		color: #fff;
+	}
+	.button-blue:hover { background-color: #7ec4ff; }
+	.button-blue:active { background-color: #aaa; color: #fff; }
+	.button-blue img { vertical-align: -2px; }
+
+	/**
+	 * Styles bouton de type Youtube
+	 * http://css-tricks.com/youtube-popup-buttons/
+	 */
+	.button-yt,
+	.corp-submit {
+		border: 1px solid #ddd;
+		border-radius: 3px;
+		text-shadow: 0 1px 1px white;
+		font: bold 11px Sans-Serif;
+		padding: 6px 10px;
+		white-space: nowrap;
+		vertical-align: middle;
+		cursor: pointer;
+		color: #666;
+		cursor: pointer;
+		border-color: #999;
+		background: -webkit-linear-gradient(top, white, #E0E0E0);
+		background:    -moz-linear-gradient(top, white, #E0E0E0);
+		background:     -ms-linear-gradient(top, white, #E0E0E0);
+		background:      -o-linear-gradient(top, white, #E0E0E0);
+		-webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.25), inset 0 0 3px #fff;
+		-moz-box-shadow:    0 1px 2px rgba(0,0,0,0.25), inset 0 0 3px #fff;
+		box-shadow:         0 1px 2px rgba(0,0,0,0.25), inset 0 0 3px #fff;
+		&:active {
+			border: 1px solid #AAA;
+			border-bottom-color: #CCC;
+			border-top-color: #999;
+			-webkit-box-shadow: inset 0 1px 2px #aaa;
+			-moz-box-shadow:    inset 0 1px 2px #aaa;
+			box-shadow:         inset 0 1px 2px #aaa;
+			background: -webkit-linear-gradient(top, #E6E6E6, #DCDCDC);
+			background:    -moz-linear-gradient(top, #E6E6E6, #DCDCDC);
+			background:     -ms-linear-gradient(top, #E6E6E6, #DCDCDC);
+			background:      -o-linear-gradient(top, #E6E6E6, #DCDCDC);
+		}
+		&.button-yt-hlhover:hover {
+			background: #599bdc;
+			background: -moz-linear-gradient(#599bdc, #3072b3);
+			background: -webkit-linear-gradient(#599bdc, #3072b3);
+			-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#599bdc',endColorstr='#3072b3')";
+			color: #fff;
+			text-shadow: 0 1px 1px #16436d;
+		}
+	}
+
+	/**
+	 * Affichage des checkbox façon iphone
+	 *
+	 * S'utilise avec les checkbox:
+	 *  <input type="checkbox" id="THE_ID" name="" class="handheld-checkbox-input" />
+	 *  <label for="THE_ID" class="handheld-checkbox">An hidden label</label>
+	 *
+	 * Ou avec des liens:
+	 *  <a class="handheld-checkbox">Unselected</a>
+ 	 *  <a class="handheld-checkbox selected">Selected</a>
+	 */
+	input[type="checkbox"].handheld-checkbox-input {
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	.handheld-checkbox {
+		display: inline-block;
+		cursor: pointer;
+		position: relative;
+		width: 71px;
+		height: 26px;
+		border-radius: 3px;
+		background-clip: padding-box;
+		box-shadow:
+			0px 1px 0px rgba(255, 255, 255, 0.1),
+			0px 2px 1px rgba(0, 0, 0, 0.1) inset,
+			0px 0px 0px 1px rgba(0, 0, 0, 0.15) inset;
+		background-color: #dce0e4;
+		background-image: -moz-linear-gradient(
+			90deg, #d3d7db 0%, #e7e9eb 100%);
+		overflow: hidden;
+		text-indent: -9999px;
+		color: #fff;
+	}
+	.handheld-checkbox:before {
+		content: "OFF";
+		font-family: "Helvetica Neue", "Helvetica", sans-serif, sans;
+		font-size: 13px;
+		display: block;
+		position: absolute;
+		width: 38px;
+		height: 26px;
+		text-indent: 0;
+		border-radius: 3px 3px 3px 3px;
+		background-clip: padding-box;
+		box-shadow:
+			0px 1px 1px rgba(0, 0, 0, 0.25),
+			0px 2px 0px rgba(255, 255, 255, 0.1) inset,
+			0px 0px 0px 1px rgba(0, 0, 0, 0.25) inset;
+		background-color: #b34b4b;
+		background-image: -moz-linear-gradient(
+			90deg, rgba(142, 39, 39, 0.5) 0%, rgba(217, 114, 114, 0.5) 100%);
+		line-height: 26px;
+		text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+		text-align: center;
+		font-weight: bold;
+	}
+	input[type="checkbox"].handheld-checkbox-input:checked ~ label.handheld-checkbox:before,
+	.handheld-checkbox.selected:before {
+		content: "ON";
+		right: 0;
+		background-color: rgb(119, 166, 37);
+		background-image: -moz-linear-gradient(
+			90deg, #3d7b13 0%, #b3d339 100%);
+	}
+	a.handheld-checkbox {
+		color: #fff;
+		&:hover {
+			background-color: inherit;
+		}
+	}
+	
+	/**
+	 * Affichage des zones de textes
+	 */
+	input[type="text"],
+	input[type="email"],
+	input[type="date"],
+	input[type="url"],
+	input[type="password"],
+	input[type="number"],
+	textarea {
+		display: inline-block;
+		height: 26px;
+		border: none;
+		padding: 0 6px;
+		color: #444;
+		margin: 0;
+		border-radius: 3px;
+		background-clip: padding-box;
+		box-shadow:
+			0px 1px 0px rgba(255, 255, 255, 0.1),
+			0px 2px 1px rgba(0, 0, 0, 0.1) inset,
+			0px 0px 0px 1px rgba(0, 0, 0, 0.15) inset;
+		background-color: #e8ebef;
+		background-image: -moz-linear-gradient(
+			90deg, #d3d7db 0%, #e7e9eb 100%);
+	}
+	
+	textarea { height: auto; }
+}
+
+/* Form Builder */
+form.formb-form {
+
+	div.formb-divlayout-label {
+		float: left;
+		text-align: right;
+		font-weight: bolder;
+		margin-top: 15px;
+		padding-top: 4px;
+		clear: left;
+	}
+
+	div.formb-divlayout-field {
+	
+		float: left;
+		margin-left: 10px;
+		margin-top: 15px;
+	
+		div.formb-separator {
+			color: $soho-blue;
+			font-weight: bolder;
+			font-size: 1.1em;
+		}
+		
+		div.formb-divlayout-appendtext {
+			font-size: 0.9em;
+			font-style: italic;
+			color: #aaa;
+			padding-left: 10px;
+		}
+	
+	}
+	
+	div.formb-divlayout-buttons {
+		clear: both;
+		padding: 15px;
+	}
+
+}

@@ -1,0 +1,47 @@
+@mixin rotate($degrees) {
+	-moz-transform: rotate($degrees);  
+	-o-transform: rotate($degrees);  
+	-webkit-transform: rotate($degrees);
+	filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=#{cos($degrees)}, M12=-#{sin($degrees)}, M21=#{sin($degrees)}, M22=#{cos($degrees)});
+	-ms-filter: "progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=#{cos($degrees)}, M12=-#{sin($degrees)}, M21=#{sin($degrees)}, M22=#{cos($degrees)})";
+	zoom: 1;
+}
+
+@mixin rounded($size) {
+	border-radius: $size;
+	-moz-border-radius: $size;
+	-webkit-border-radius: $size;
+}
+
+@mixin boxshadow($x, $y, $blur, $spread, $color) {
+	-moz-box-shadow: $x $y $blur $spread $color;
+	-webkit-box-shadow: $x $y $blur $spread $color;
+	box-shadow: $x $y $blur $spread $color;
+}
+
+@mixin clearfix($void) {
+	&:after {
+		content: "\0020";
+		display: block;
+		height: 0;
+		clear: both;
+		overflow: hidden;
+		visibility: hidden;
+	}
+}
+
+@mixin transition($object, $delay) {
+	transition: $object $delay;
+	-moz-transition: $object $delay;
+	-o-transition: $object $delay;
+	transition: $object $delay;
+}
+
+@mixin userselect($value) {
+	-webkit-touch-callout: $value;
+	-webkit-user-select: $value;
+	-khtml-user-select: $value;
+	-moz-user-select: $value;
+	-ms-user-select: $value;
+	user-select: $value;
+}

@@ -1,0 +1,457 @@
+
+#container #main .view {
+
+	/* Heading */
+
+	h1 {
+		font-size: 1.5em;
+		padding: 5px 0 0 10px;
+		background-color: $header1-bg;
+		color: $header1-color;
+		height: 30px;
+		overflow: hidden;
+		border-bottom: 1px solid #ccc;
+	}
+
+	h2 {
+		border-bottom: 1px dashed #ccc;
+		margin: 20px 0 10px 0;
+		padding-bottom: 4px;
+		font-weight: bolder;
+		text-transform: uppercase;
+		color: $soho-blue;
+	}
+
+	h3 {
+		font-size: 13px;
+		font-weight: bolder;
+		margin: 10px;
+	}
+
+	h4 {
+		font-weight: bolder;
+		font-style: italic;
+		margin: 0 0 0 10px;
+		font-family: $font-sans2;
+		text-transform: uppercase;
+	}
+
+	h5, h6 {
+		font-weight: bolder;
+		font-style: italic;
+		margin: 0 0 0 10px;
+	}
+
+	/* Links */
+
+	a {
+		color: $soho-blue;
+		text-decoration: none;
+
+		&:hover {
+			background-color: #eee;
+			color: purple;
+		}
+	}
+
+	/* Lists */
+
+	h1, h2, h3, h4, h5, h6 {
+		counter-reset: ol-a;
+	}
+
+	li { margin: 3px 0; }
+	li > p { margin: 0; }
+
+	ul { margin-left: 30px; }
+	ul ul { margin-left: 15px; }
+	ul li { list-style-type: circle; }
+
+	ol { margin-left: 15px; }
+	ol li { list-style-type: none; }
+	ol > li:before {
+		content: counter(ol-a) ". ";
+		counter-increment: ol-a;
+		counter-reset: ol-b;
+		font-style: italic;
+		color: #888;
+	}
+	ol > li > ol > li:before {
+		content: counter(ol-a) "-" counter(ol-b) ". ";
+		counter-increment: ol-b;
+		counter-reset: ol-c;
+		font-style: italic;
+		color: #888;
+	}
+	ol > li > ol > li > ol > li:before {
+		content: counter(ol-a) "-" counter(ol-b) "-" counter(ol-c) ". ";
+		counter-increment: ol-c;
+		font-style: italic;
+		color: #888;
+	}
+
+	dl { margin-left: 30px; }
+	dt { font-weight: bolder; margin-top: 10px; }
+	dt:nth-of-type(1), dt + dt { margin-top: 0; } 
+	dd { margin-left: 20px; }
+
+	/* Figures */
+
+	counter-reset: figures;
+
+	figure {
+		margin: 15px 10px;
+		clear: both;
+
+		figcaption {
+			line-height: 100%;
+			font-weight: bolder;
+			margin: 0;
+			display: block;
+			clear: both;
+			&:before {
+				content: "Figure " counter(figures) ". ";
+				counter-increment: figures;
+				color: #999;
+			}
+			& > * {
+				margin: 0;
+			}
+		}
+	}
+
+	/* Tables */
+
+	table {
+
+		clear: both;
+		margin: 10px;
+
+		th, td {
+			border: 1px solid #aaa;
+			vertical-align: middle;
+			padding: 2px 5px 4px 5px;
+		}
+
+		th {
+			background-color: #dedede;
+			text-align: left;
+			font-weight: bolder;
+		}
+
+		caption {
+			caption-side: bottom;
+			-webkit-box-shadow: 0px 1px 0 #eee;
+			-moz-box-shadow: 0px 1px 0 #eee;
+			box-shadow: 0px 1px 0 #eee;
+			font-size: 10px;
+			padding-top: 5px;
+			font-weight: bolder;
+		}
+
+		/* Un style de tableau spécial, sans les lignes verticales */
+		&.receipt {
+			th {
+				background-color: transparent;
+				vertical-align: bottom;
+				border: none;
+				border-bottom: 1px solid #bbb;
+			}
+			td {
+				border: none;
+				border-bottom: 1px solid #ddd;
+				padding: 5px;
+			}
+		}
+
+		/* Le type de tableau standard */
+		&.data {
+			width: 98%;
+			margin: 10px 1% 10px 1%;
+			th {
+				background-color: $soho-blue;
+				color: #fff;
+			}
+			tr:hover {
+				background-color: #efefef;
+			}
+			.edit { float: right; visibility: hidden; font-weight: normal; }
+			.edit a { text-decoration: none; color: #555; }
+			.edit a img { vertical-align: -3px; }
+			.editable:hover > .edit { visibility: visible; }
+		}
+
+		/* Un style utilisé par la vue file (mais qui reste global) */
+		&.wg-tree-table {
+			width: 100%;
+			background-color: #fff;
+			th {
+				border: none;
+				background-color: #fff;
+				font-size: 1em;
+				font-weight: normal;
+				color: #666;
+				padding: 4px 0;
+			}
+			td {
+				border: none;
+				border-top: 1px solid #eee;
+				padding: 5px;
+			}
+			tr:last-child {
+				border-bottom: 1px solid #eee;
+			}
+		}
+	}
+
+	/* Other tags */
+
+	p {
+		margin: 10px;
+		max-width: $readable-width;
+		line-height: 1.2334em;
+	}
+
+	li {
+		max-width: $readable-width;
+		line-height: 1.2334em;
+	}
+
+	code {
+		color: green;
+	}
+
+	cite {
+		font-style: italic;
+		font-weight: 200;
+	}
+
+	pre {
+		background-color: #eee;
+		border-left: 5px solid green;
+		margin: 10px;
+
+		code {
+			color: #000;
+		}
+	}
+
+	var {
+		color: purple;
+		font-family: $font-monospace;
+	}
+
+	samp {
+		font-family: $font-monospace;
+	}
+
+	kbd {
+		font-size: 12px;
+		font-family: $font-monospace;
+		font-weight: normal;
+		background-color: #FCFCFC;
+		margin: 0 0.25em;
+		border: 1px solid #E6E6E6;
+		border-bottom: 2px solid #E0E0E0;
+		border-radius: 3px;
+		-moz-border-radius: 3px;
+		padding: 0.3333em 0.6667em;
+	}
+
+	blockquote {
+		font-family: $font-serif;
+		margin: 10px;
+		font-style: italic;
+		line-height: 130%;
+		font-size: 13px;
+	}
+
+	/**
+	 * Postionne des boutons de commandes dans le haut d'une vue.
+	 * Style à utiliser juste après un H1 ou un .view-topbar
+	 */
+	.rightcommands {
+		float: right;
+		margin: -26px 1% 0 0;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		user-select: none;
+	}
+
+	/* Topbar dans une vue */
+	.view-topbar {
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		user-select: none;
+		padding: 3px 10px 0 10px;
+		background-color: #ddd;
+		color: white;
+		height: 32px;
+		overflow: hidden;
+		border-bottom: 1px solid #ccc;
+		.rightcommands {
+			float: right;
+			margin: 7px 5px 0 5px;
+		}
+		& > table {
+			width: 100%;
+			margin: 4px 0 0 0;
+			border: none;
+			th, td {
+				border: none;
+			}
+		}
+	}
+
+	/* Menu "classic" */
+	ul.view-topbar-menu {
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		user-select: none;
+		height: 20px;
+		background-color: #ddd;
+		border-bottom: 1px solid #ccc;
+		padding: 0;
+		margin: 0;
+		li {
+			margin: 0;
+			list-style-type: none;
+			height: 18px;
+			cursor: pointer;
+			position: relative;
+			text-align: left;
+			padding: 2px 5px 0 5px;
+			background: #ddd;
+			&:hover {
+				background: #ccc;
+			}
+			a {
+				color: #333;
+				&:hover {
+					background: none;
+				}
+			}
+			&:hover > ul {
+				display: block;
+			}
+		}
+		li li {
+			&.hasSub {
+				background: #ddd url(arrow_right.png) center right no-repeat;
+			}
+			padding-right: 16px;
+		}
+		ul {
+			display: none;
+			margin: 0;
+			border: 1px solid #bbb;
+		}
+		& > li {
+			display: block;
+			float: left;
+			text-align: center;
+			& > ul {
+				position: absolute;
+				top: 20px;
+				margin-left: 0;
+				left: 0;
+				ul {
+					position: absolute;
+					top: -1px;
+					left: 100%;
+				}
+			}
+		}
+	}
+
+	/**
+	 * Layout : deux zones, avec le contenu à gauche et une colonne à droite
+	 * plus petite. Les deux zones ont une hauteur fluide.
+	 */
+	.rightcol {
+		float: left;
+		width: 24%;
+		margin: 0 1% 0 0;
+	}
+	.rightcol h2 {
+		margin-top: 20px;
+		border-top: 1px dashed #ccc;
+		padding-top: 20px;
+	}
+	.rightcol h2:nth-of-type(1) {
+		margin-top: 15px;
+		border-top: none;
+		padding-top: 0;
+	}
+	.leftcol {
+		margin: 0 1%;
+		width: 73%;
+		float: left;
+	}
+	.leftcol:after,
+	.rightcol:after {
+		content: ".";
+		display: block;
+		height: 0;
+		clear: both;
+		visibility: hidden;
+	}
+	.singlecol {
+		margin: 10px 1% 0 1%;
+		padding-bottom: 10px;
+		width: 98%;
+	}
+
+	/**
+	 * Layout : deux zones, avec le contenu à droite et un panel à gauche
+	 * plus petit. Le panel prends toute la hauteur avec du javascript.
+	 */
+	.vertical-panel {
+		float: left;
+		border-top: 2px solid #ccc;
+		border-right: 1px solid #ccc;
+		background-color: #efefef;
+		width: 200px;
+	}
+	.vertical-content {
+		overflow: auto;
+	}
+
+}
+
+/*
+
+input.editable-select {
+	background: #FFF url(arrow-down.gif) right center no-repeat;
+	padding-right: 13px;
+}
+.editable-select-options {
+	position: absolute;
+	display: none;
+	overflow: auto;
+	margin: 0;
+	padding: 0;
+	background: #FFF;
+	border: 1px solid #CCC;
+	z-index: 10;
+}
+.editable-select-iframe {
+	position: absolute;
+	background: #FFF;
+	z-index: 9;
+	display: none;
+}
+.editable-select-options ul {
+	margin: 0;
+	padding: 0;
+	z-index: 10;
+	list-style: none;
+	list-style-image: none;
+}
+.editable-select-options li {
+	cursor: default;
+	padding: 2px;
+}
+.editable-select-options li.selected {
+	background: #EAEAEA;
+}*/

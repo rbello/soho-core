@@ -1,0 +1,125 @@
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section { display: block; }
+audio, canvas, video { display: inline-block; *display: inline; *zoom: 1; }
+[hidden] { display: none; }
+
+html {
+	font-size: 12px;
+	height: 100%;
+	overflow-y: scroll;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+}
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 12px;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+body {
+	font-family: $font-sans;
+	color: #333;
+	height: 100%;
+	font-size: 12px;
+	-webkit-font-smoothing: antialiased;
+	/*text-rendering: optimizelegibility*/
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+blockquote, q { quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after { content: ""; content: none; }
+
+ins { background-color: #ff9; color: #000; text-decoration: none; }
+
+mark { background-color: #ff9; color: #000; font-style: italic; font-weight: bold; }
+
+del { text-decoration: line-through; }
+
+abbr[title], dfn[title] { border-bottom: 1px dotted; cursor: help; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+
+hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0; }
+
+input, select { vertical-align: middle; }
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+label[for] { cursor: pointer; }
+
+em, i { font-style: italic; }
+strong, b { font-weight: bolder; }
+u { text-decoration: underline; }
+
+table {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+pre {
+	font-family: $font-monospace;
+	padding: 10px;
+	white-space: pre-wrap;       /* css-3 */
+	white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+	white-space: -pre-wrap;      /* Opera 4-6 */
+	white-space: -o-pre-wrap;    /* Opera 7 */
+	word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+code {
+	font-family: $font-monospace;
+}
+
+img { border: none; vertical-align: middle; }
+
+img, object, embed, video, iframe { max-width: 100%; }
+
+small {
+	font-size: smaller;
+	color: #666;
+}
+
+sup, sub {
+	font-size: smaller;
+	line-height: 90%;
+	vertical-align: super;
+}
+
+sub {
+	vertical-align: sub;
+}
+
+a { cursor: pointer; }
+
+*[draggable=true] {
+    -khtml-user-drag: element; /* WebKit hack */
+    cursor:move;               /* a move cursor */
+    -moz-user-select:none;     /* disabled content selection
+                                  on mozilla browsers */
+}

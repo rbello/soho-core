@@ -1,0 +1,53 @@
+
+$soho-blue: #1A74A7;
+$title-color: #fff;
+$locker-bg: #000;
+$menu-bg: #eee;
+$menu-color: #fff;
+$top-height: 24px;
+$header1-bg: #ddd;
+$header1-color: #fff;
+$font-sans: Verdana, Arial, sans-serif;
+$font-sans2: 'Bliss Light','Helvetica Neue',Arial,sans-serif;
+$font-monospace: Menlo, Monaco, 'Courier New', Courier, monospace;
+$font-serif: Georgia, 'Times New Roman', Times, serif;
+$readable-width: 500px;
+
+/* Import mixins */
+@import "mixin.scss";
+
+/* Reset CSS styles */
+@import "reset.scss";
+
+/* Structure of SoHo UI */
+@import "struct.scss";
+
+/* Styles for live top bar */
+@import "live.scss";
+
+/* Styles for main #wrapper area (common styles) */
+@import "body.scss";
+
+/* Styles for micro-components */
+@import "micro.scss";
+
+/* Styles for status indicators */
+@import "status.scss";
+
+/* Styles for widgets */
+@import "widget.scss";
+
+/* Styles for WGCRT and security process */
+@import "security.scss"; /* DEPRECATED (voir détail dans le fichier) */
+
+/* Styles for forms and inputs */
+@import "forms.scss";
+
+/* Styles for print device */
+@import "print.scss";
+
+/* Responsive styles for small screen */
+@import "responsive.scss";
+
+/* Nightmode */
+@import "nightmode.scss";

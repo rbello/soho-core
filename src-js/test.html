@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>WG.js</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<script src="core.js"></script>
+	<script src="util.js"></script>
+	<script src="security.js"></script>
+	<script src="ui.js"></script>
+	<script src="ui.view.js"></script>
+	<script src="ui.trayicon.js"></script>
+	<script src="live.js"></script>
+	<script src="search.js"></script>
+	<script src="test.js"></script>
+
+	<link rel="stylesheet" href="../src/public/core.css">
+</head>
+
+<body>
+<script>
+
+/**
+ * Test: TrayIcon
+ *
+ * L'objectif de ce test est de confirmer le bon fonctionnement
+ * de la classe TrayIcon, et de son installation dans l'UI.
+ *
+var test10 = new TestCase('TrayIcon').start();
+
+// Etat inital
+test10.assertEqual(WG.ui.getTrayIconsCount(), 1, 'TrayIconTestCase.Init.1');
+test10.assertNull(WG.ui.getTrayIcon('mailbox'), 'TrayIconTestCase.Init.2');
+
+// Création d'une icône système
+var ti = WG.ui.addTrayIcon({name: 'mailbox', icon: true});
+test10.assertEqual(WG.ui.getTrayIconsCount(), 2, 'TrayIconTestCase.Create.1');
+test10.assertNotNull(WG.ui.getTrayIcon('mailbox'), 'TrayIconTestCase.Create.2');
+
+// Events
+var td = false;
+ti.one('appear', function () {
+	td = !td;
+}).trigger('appear').trigger('appear');
+test10.assertTrue(td, 'TrayIcon.Events.1');
+
+// Fin du test
+test10.close();
+
+console.log('# EOF');*/
+
+</script>
+</body>
+</html>

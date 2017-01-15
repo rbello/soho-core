@@ -1,0 +1,302 @@
+body#wg[nightmode="on"] {
+	
+	background: url(lookandfeel/nightmode/bg.png);
+	color: #eee;
+	
+	#container header {
+	
+		#top,
+		#top #live .icon .drop-down {
+			background-color: #444;
+		}
+		
+		#top #live .icon:hover,
+		#top #live .icon ul.drop-down li:hover {
+			background: #333;
+		}
+		
+		div#menuOpts { background-color: #555; border-color: #444; }
+		div#menuOpts > a { color: #fff; }
+		div#menuOpts > a:hover { color: orange; }
+	
+		ul#menu,
+		ul#menu ul {
+			background-color: #666;
+			border-color: #333;
+		}
+		
+		ul#menu {
+			a {
+				color: #ddd;
+				font-weight: bolder;
+				text-shadow: #333 0 1px 0;
+			}
+			& > li {
+				border-color: #555;
+				&:before {
+					color: #444;
+				}
+			}
+			li:hover a,
+			& > li:hover:before {
+				color: #fff;
+			}
+			& > li:hover:active,
+			ul li:hover:active {
+				background-color: #333;
+			}
+			& > li:hover,
+			& ul li:hover {
+				background-color: #444;
+			}
+		}
+		
+		.wait-msg:before {
+			background: url(lookandfeel/nightmode/wait.gif) left center no-repeat;
+		}
+		
+	}
+	
+	#status {
+		box-shadow: none;
+		background: #444;
+		border-color: #333;
+		a.continue {
+			color: orange;
+		}
+	}
+	
+	#container #main #wrapper {
+		
+		.view {
+			var {
+				color: #66a957;
+			}
+			code {
+				color: orange;
+			}
+			h2 {
+				color: orange;
+				border-color: #333;
+			}
+			pre {
+				background: #555;
+				border-color: #333;
+				code {
+					color: #fff;
+				}
+			}
+			a {
+				color: #ffc600;
+				&:hover {
+					background-color: #555;
+					color: #e5ae60;
+				}
+			}
+			.deltaUp {
+				color: #66a957;
+			}
+			.deltaDown {
+				color: #de5151;
+			}
+			.optionbar {
+				background: #444;
+			}
+			.resulterror,
+			.resultok {
+				color: #333;
+			}
+			.vertical-panel {
+				background: #444;
+				border-color: #333;
+			}
+			.card {
+				background: #555;
+				-moz-box-shadow: -2px 2px 2px 0px #444;
+				-webkit-box-shadow: -2px 2px 2px 0px #444;
+				-o-box-shadow: -2px 2px 2px 0px #444;
+				box-shadow: -2px 2px 2px 0px #444;
+				border-color: #444;
+				p {
+					color: #eee;
+				}
+			}
+			.view-topbar,
+			h1,
+			.optionbar {
+				background-color: #333;
+				border-color: #222;
+				& > span.title {
+					color: #999;
+				}
+			}
+			.split-breadcrumb li a {
+				border-color: #333;
+				&:hover {
+					border-color: #444;
+				}
+			}
+			
+			/* Buttons */
+			
+			.button {
+				background-color: #777;
+				color: #eee;
+				border-color: #666;
+				&:hover {
+					background-color: #666;
+					border-color: #444;
+					color: #fff;
+				}
+			}
+			.button-yt {
+				text-shadow: 0 1px 1px #555;
+				border-color: #3f3f3f;
+				color: #eee !important;
+				-webkit-box-shadow: inset 0 1px 2px #555;
+				-moz-box-shadow: inset 0 1px 2px #555;
+				box-shadow: inset 0 1px 2px #555;
+				background: -webkit-linear-gradient(top, #555, #494848);
+				background: -moz-linear-gradient(top, #555, #494848);
+				background: -ms-linear-gradient(top, #555, #494848);
+				background: -o-linear-gradient(top, #555, #494848);
+				background-color: #555;
+				&:hover {
+					color: #fff !important;
+					text-shadow: 0 1px 1px #333;
+				}
+				&:active {
+					-webkit-box-shadow: inset 0 1px 2px #444;
+					-moz-box-shadow: inset 0 1px 2px #444;
+					box-shadow: inset 0 1px 2px #444;
+				}
+			}
+			
+			/* Tables */
+			
+			table.data {
+				th {
+					background: #777;
+					&:hover {
+						background: #444;
+					}
+				}
+			}
+			table td,
+			table th {
+				border-color: #444;
+			}
+			table.wg-tree-table {
+				background: none;
+				th {
+					background: #444;
+					color: #ccc;
+					border-bottom: 1px solid #999;
+				}
+				tr:last-child {
+					border-color: #444;
+				}
+			}
+			
+			/* Tabs */
+
+			div.tabcontent {
+				border-color: #333;
+				background: #444;
+			}
+			
+			ul.tabmenu li {
+				border-color: #333;
+				border-bottom-color: #333;
+				background: #444;
+				text-shadow: none;
+			}
+			
+			ul.tabmenu li a {
+				color: #bbb;
+				font-weight: bolder;
+			}
+			
+			ul.tabmenu li.selected {
+				border-bottom-color: #444;
+				background: -o-linear-gradient(top, #333 30%, #444 100%);
+				background: -ms-linear-gradient(top, #333 30%, #444 100%);
+				background: -moz-linear-gradient(top, #333 30%, #444 100%);
+				background: -webkit-linear-gradient(top, #333 30%, #444 100%);
+				background: linear-gradient(top, #333 30%, #444 100%);
+			}
+			
+			ul.tabmenu li.selected a {
+				color: #fff;
+			}
+			
+			ul.tabmenu li a:hover {
+				background: none;
+			}
+			
+			ul.tabmenu li:after,
+			ul.tabmenu li:before {
+				border-color: #333;
+			}
+			
+			ul.tabmenu li:before {
+				box-shadow: 2px 2px 0 #444;
+			}
+			
+			ul.tabmenu li:after {
+				box-shadow: -2px 2px 0 #444;
+			}
+		}
+		
+		/* Widget */
+		
+		.widget {
+			& > div li {
+				border-color: #555;
+			}
+		}
+		
+		#view-dashboard .leftcol .widget {
+			background: #555;
+			border-color: #444;
+			-moz-box-shadow: -2px 2px 2px 0px #444;
+			-webkit-box-shadow: -2px 2px 2px 0px #444;
+			-o-box-shadow: -2px 2px 2px 0px #444;
+			box-shadow: -2px 2px 2px 0px #444;
+		}
+		
+		#view-dashboard .leftcol .widget h2 {
+			background: #777;
+			color: #fff;
+		}
+		
+		.widget > div > img {
+			border-radius: 3px;
+		}
+		
+		.widget small {
+			color: #ccc;
+		}
+		
+		/* WGCRT : déprécié, normalement on n'affiche jamais le form en nightmode */
+		
+		/*#view-login form.wgcrt {
+			color: #fff;
+			background: #666;
+			border-color: #555;
+		}
+		
+		#view-login #vkb:before,
+		#view-login #vkb {
+			background: #333;
+			border-color: #222;
+		}*/
+		
+		/* Poptop */
+		#poptop {
+			color: #222;
+		}
+		
+	}
+
+}

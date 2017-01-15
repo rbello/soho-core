@@ -1,0 +1,328 @@
+
+body#wg #container #main .view {
+
+	/**
+	 * Styles for tabbed panes
+	 */
+	ul.tabmenu {
+		list-style: none;
+		margin: 10px 1% 0 3%;
+		width: 96%;
+		padding: 0 0 0 1%;
+		line-height: 24px;
+		position: relative;
+		overflow: hidden;
+		&:before {
+			z-index: 1;
+		}
+		&:after {
+			position: absolute;
+			content: "";
+			width: 100%;
+			bottom: 0;
+			left: 0;
+			z-index: 1;
+		}
+		& > li {
+			line-height: 24px;
+			/*max-height: 24px;*/
+			border: 1px solid #ccc;
+			background: #ECECEC;
+			display: inline-block;
+			z-index: 0;
+			border-top-left-radius: 6px;
+			border-top-right-radius: 6px;
+			background:      -o-linear-gradient(top, #ECECEC 50%, #D1D1D1 100%);
+			background:     -ms-linear-gradient(top, #ECECEC 50%, #D1D1D1 100%);
+			background:    -moz-linear-gradient(top, #ECECEC 50%, #D1D1D1 100%);
+			background: -webkit-linear-gradient(top, #ECECEC 50%, #D1D1D1 100%);
+			background: linear-gradient(top, #ECECEC 50%, #D1D1D1 100%);
+			text-shadow: 0 1px #fff;
+			margin: 0 -5px;
+			padding: 0 20px;
+			&:before,
+			&:after {
+				position: absolute;
+				bottom: -1px;
+				width: 6px;
+				height: 6px;
+				content: " ";
+				border: 1px solid #ccc;
+			}
+			&:before {
+				left: -7px;
+				border-bottom-right-radius: 6px;
+				border-width: 0 1px 1px 0;
+				box-shadow: 2px 2px 0 #D1D1D1;
+			}
+			&:after {
+				right: -7px;
+				border-bottom-left-radius: 6px;
+				border-width: 0 0 1px 1px;
+				box-shadow: -2px 2px 0 #D1D1D1;
+			}
+			&.selected {
+				background: #fff;
+				color: #000;
+				z-index: 2;
+				border-bottom-color: #fff;
+				&:before {
+					box-shadow: 2px 2px 0 #fff;
+				}
+				&:after {
+					box-shadow: -2px 2px 0 #fff;
+				}
+				a {
+					color: $soho-blue;
+				}
+			}
+			& > a {
+				text-decoration: none;
+				color: #666;
+				
+				height: 23px;
+				max-width: 100px;
+				display: inline-block;
+				overflow: hidden;
+			
+				&:hover {
+					color: $soho-blue;
+					background: none;
+				}
+				span {
+					display: inline-block;
+					background-color: #999;
+					color: #fff;
+					font-size: 10px;
+					padding: 0 2px;
+					margin-left: 4px;
+					line-height: 14px;
+					-moz-border-radius: 5px;
+					-webkit-border-radius: 5px;
+					border-radius: 5px;
+					text-shadow: none;
+				}
+			}
+			& > span.close {
+				display: none;
+				width: 10px;
+				height: 10px;
+				overflow: hidden;
+				text-indent: -9999px;
+				background: url(core.png) -18px -50px;
+				margin-left: 7px;
+				cursor: pointer;
+				border: 1px solid transparent;
+				-moz-border-radius: 2px;
+				-webkit-border-radius: 2px;
+				border-radius: 2px;
+				&:hover {
+					border-color: $soho-blue;
+				}
+			}
+			&.selected > span.close {
+				display: inline-block;
+			}
+		}
+	}
+	div.tabcontent {
+		border: 1px solid #ccc;
+		margin: -1px 1% 5px 1%;
+		width: 96%;
+		padding: 1%;
+		border-radius: 6px;
+		display: none;
+		&.selected {
+			display: block;
+		}
+		h2:first-child {
+			margin-top: 0;
+		}
+	}
+
+	/**
+	 * Styles for progress bar
+	 */
+	.progressbar {
+		margin: 10px 1%;
+		height: 10px;
+		background-color: #ccc;
+	}
+
+	.progressbar div {
+		height: 10px;
+		float: left;
+		line-height: 40px;
+		font-weight: bolder;
+		font-size: 0.9em;
+	}
+
+	.progressbar .progressbar-todo {
+		background-color: #e87e7e;
+		color: #e87e7e;
+	}
+
+	.progressbar .progressbar-inprogress {
+		background-color: #f4cc2b;
+		color: #f4cc2b;
+	}
+
+	.progressbar .progressbar-done {
+		background-color: #56bc62;
+		color: #56bc62;
+	}
+
+	/**
+	 * Styles for change delta indicator
+	 */
+	.deltaUp,
+	.deltaDown {
+		padding: 0 2px;
+		&:before {
+			content: " ";
+			display: inline-block;
+			width: 9px;
+			height: 9px;
+			overflow: hidden;
+		}
+	}
+	.deltaUp {
+		color: green;
+		&:before {
+			background: url(core.png) -22px -107px no-repeat;
+		}
+	}
+	.deltaDown {
+		color: red;
+		&:before {
+			background: url(core.png) -16px -114px no-repeat;
+		}
+	}
+
+	/**
+	 * Layout : les barres d'options sont utilisées un peu partout, par exemple pour
+	 * filtrer les résultats d'un tableau dans une vue, ou afficher des boutons.
+	 */
+	.optionbar {
+		background: #eee;
+		padding: 8px 12px;
+		margin: 10px 1%;
+		min-height: 22px;
+		font-size: 0.8em;
+	}
+	.optionbar:after {
+		content: ".";
+		display: block;
+		height: 0;
+		clear: both;
+		visibility: hidden;
+	}
+	.optionbar > span { display: block; height: 22px; float: left; }
+	.optionbar > span.normal { padding: 5px 10px 0 0; }
+	.optionbar > span.header { padding: 5px 10px 0 0; font-size: 1.1em; font-weight: bolder; }
+	.optionbar > span.title { padding: 5px 10px 0 15px; font-weight: bolder; color: #1A74A7; }
+	.optionbar > span.field  + span.title { border-left: 1px solid #ccc; padding-left: 15px; margin-left: 15px; }
+	.optionbar > span.title img { vertical-align: -4px; }
+	.optionbar > span.field { }
+
+	/**
+	 * Permet d'afficher un fil d'ariane. Chaque élément est cliquable.
+	 */
+	.split-breadcrumb {
+		margin-top: 6px;
+		li {
+			display: inline;
+			list-style-type: none;
+			margin-right: 2px;
+			a {
+				padding: 5px 10px;
+				text-decoration: none;
+				border: 1px solid #ddd;
+				color: #888;
+				cursor: default;
+				text-indent: 0;
+				&:hover {
+					color: #888;
+					background-color: none;
+				}
+				&[href] {
+					cursor: pointer;
+					color: #555;
+					&:hover {
+						border: 1px solid #ccc;
+						background-color: #eee;
+					}
+				}
+			}
+			&:after {
+				content: " » ";
+				color: #bbb;
+			}
+			&:last-child:after {
+				content: none;
+			}
+		}
+	}
+
+	/**
+	 * Affichage de cartes pour contenu divers.
+	 */
+	.card {
+		width: 250px;
+		float: left;
+		margin: 1%;
+		border: 1px solid #eee;
+		font-size: 0.9em;
+		padding-bottom: 6px;
+		&:hover {
+			background-color: #eee;
+			border-color: #ccc;
+		}
+		.avatar {
+			float: left;
+			margin: 15px;
+		}
+		p { clear: both; margin: 2px 10px; }
+	}
+
+	/**
+	 * Liens favorite/unfavorite
+	 */
+	a.favggle, .favicon {
+		display: inline-block;
+		width: 16px;
+		height: 16px;
+		overflow: hidden;
+		text-indent: -9999px;
+		vertical-align: middle;
+		background: url(core.png) 0 -170px;
+		&:hover {
+			background-color: transparent !important;
+		}
+	}
+	a.favggle.not {
+		background: url(core.png) 0 -186px;
+	}
+	a.favggle.wait {
+		background: url(wait.gif);
+	}
+
+	/**
+	 * Les choses à faire.
+	 */
+	.todo { color: red !important; }
+	
+	/**
+	 * Mots de passes.
+	 */
+	.pwd { color: #222; background: #222; }
+	
+	/**
+	 * Forcer le scrolling
+	 */
+	.force-scroll {
+		overflow: scroll;
+		white-space: nowrap;
+	}
+
+}

@@ -1,0 +1,124 @@
+
+.result {
+	background-color: #eee;
+	padding: 15px;
+}
+.resultok {
+	background: #a8ecb0;
+}
+.resulterror {
+	background: #f3b1aa;
+}
+
+#status {
+	display: none;
+	max-width: 200px;
+	background: #eee;
+	border: 2px solid #ccc;
+	position: fixed;
+	z-index: 90;
+	top: 40%;
+	left: 50%;
+	padding: 10px;
+	margin: -30px 0 0 -100px;
+	-moz-box-shadow: 5px 5px 5px 0px #eee;
+	-webkit-box-shadow: 5px 5px 5px 0px #eee;
+	-o-box-shadow: 5px 5px 5px 0px #eee;
+	box-shadow: 5px 5px 5px 0px #eee;
+
+	a.continue {
+		display: block;
+		width: 55px;
+		margin: 15px auto 0 auto;
+		text-align: center;
+		color: #1A74A7;
+		font-style: italic;
+		cursor: pointer;
+		text-decoration: none;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
+header .wait-msg:before,
+header .failure-msg:before,
+header .alert-msg:before,
+header .success-msg:before {
+	content: " ";
+	width: 14px;
+	height: 14px;
+	overflow: hidden;
+	display: inline-block;
+	vertical-align: -3px;
+	margin-right: 8px;
+	background: url(core.png) 0 0 no-repeat;
+}
+
+header .wait-msg:before {
+	width: 16px;
+	height: 16px;
+	background: url(wait.gif) 0 0 no-repeat;
+}
+
+header .failure-msg:before {
+	background-position: -16px -64px;
+}
+
+header .alert-msg:before {
+	background-position: 0 -78px;
+	width: 16px;
+	height: 15px;
+}
+
+header .success-msg:before {
+	background-position: 0 -64px;
+
+}
+
+.securized:before {
+	content: " ";
+	display: inline-block;
+	vertical-align: -2px;
+	width: 12px;
+	height: 15px;
+	background: url(core.png) -16px -78px no-repeat;
+	overflow: hidden;
+	margin-right: 6px;
+}
+
+/* Pop top */
+
+#poptop {
+	position: absolute;
+	z-index: 6001;
+	top: 24px;
+	left: 0;
+	right: 0;
+	background: #fde073;
+	text-align: center;
+	line-height: 2.5;
+	overflow: hidden; 
+	-webkit-box-shadow: 0 0 5px black;
+	-moz-box-shadow:    0 0 5px black;
+	box-shadow:         0 0 5px black;
+}
+
+#poptop {
+	-webkit-transform: translateY(-50px);
+	-webkit-animation: slideDown 4s 1.0s 1 ease forwards;
+	-moz-transform:    translateY(-50px);
+	-moz-animation:    slideDown 4s 1.0s 1 ease forwards;
+}
+
+#close-poptop {
+	position: absolute;
+	right: 10px;
+	top: 9px;
+	text-indent: -9999px;
+	background: url(core.png) -16px -48px no-repeat;
+	overflow: hidden;
+	height: 14px;
+	width: 14px;
+	cursor: pointer;
+}

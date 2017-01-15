@@ -1,0 +1,4 @@
+/* For security reason */
+@media print {
+	body#wg { display: none !important; }
+}
