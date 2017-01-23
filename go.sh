@@ -23,6 +23,9 @@ case "$1" in
         rm -rf src-php/www/css
         mkdir src-php/www/css
         echo "Nothing here..." > src-php/www/css/index.html
+        rm -rf src-php/www/js
+        mkdir src-php/www/js
+        echo "Nothing here..." > src-php/www/js/index.html
         ;;
 
     update)
@@ -30,7 +33,7 @@ case "$1" in
         composer update
         ;;
 
-    install)
+    setup)
         echo "Install required applications...";
         gem install sass
         gem install compass
@@ -88,14 +91,14 @@ case "$1" in
             echo "    write build/WG-$VERSION.js"
             java -jar src-js/yuicompressor.jar build/WG-$VERSION.js -o build/WG-$VERSION.pack.js
             echo "    write build/WG-$VERSION.pack.js"
-	    sed -i '1s;^;/**\n * JavaScript application for SoHo web application container\n * $Id: soho.js\n */\n/*global jQuery*/\n;' build/WG-$VERSION.pack.js
-	    if [ "$DEBUG" = true ] ; then
-		cp build/WG-$VERSION.js src-php/www/js/soho.js
-		echo "    copy -> src-php/www/js/soho.js (debug)"
-	    else
-		cp build/WG-$VERSION.pack.js src-php/www/js/soho.js
-		echo "    copy -> src-php/www/js/soho.js (production)"
-	    fi
+    	    sed -i '1s;^;/**\n * JavaScript application for SoHo web application container\n * $Id: soho.js\n */\n/*global jQuery*/\n;' build/WG-$VERSION.pack.js
+    	    if [ "$DEBUG" = true ] ; then
+    		    cp build/WG-$VERSION.js src-php/www/js/soho.js
+    		    echo "    copy -> src-php/www/js/soho.js (debug)"
+    	    else
+    		    cp build/WG-$VERSION.pack.js src-php/www/js/soho.js
+    		    echo "    copy -> src-php/www/js/soho.js (production)"
+    	    fi
         fi
         ;;
 
@@ -107,19 +110,19 @@ case "$1" in
     *)
         echo "Usage: go.sh <option>"
         echo "Setup:"
-        echo "   install                 Installation du système."
-        echo "   update                  Mettre à jour les dépendances."
-        echo "   clean-files             Nettoyer tous les fichiers propres à l'installation."
-        echo "Data:"
-        echo "   mapinfo <entity>        Affiche les informations de mapping de l'entité."
-        echo "   data <dataset>          Installer les données samples."
-        echo "   data truncate           Nettoyer toutes les données de la base."
-        echo "   data rebuild [dataset]  Reconstruit la structure de la BDD à partir des entités."
+        echo "   setup                   Setup environment"
+        echo "   update                  Update library dependencies"
+        echo "   clean-files             Clean up all temporary or generated files"
+#        echo "Data:"
+#        echo "   mapinfo <entity>        Affiche les informations de mapping de l'entité."
+#        echo "   data <dataset>          Installer les données samples."
+#        echo "   data truncate           Nettoyer toutes les données de la base."
+#        echo "   data rebuild [dataset]  Reconstruit la structure de la BDD à partir des entités."
         echo "Generation:"
-        echo "   css [-watch]            Générer les fichiers CSS à partir des fichiers SASS."
-        echo "   js [-watch]             Générer les fichiers JS minifiés."
-        echo "   compile                 Genérer both CSS + JavaScripts."
+        echo "   css [-watch]            Generate CSS files"
+        echo "   js [-watch]             Generate JAVASCRIPT files"
+        echo "   compile                 Generate both CSS + JS files"
         echo "Tools:"
-        echo "   cli <cmd>               Executer une commande sur le système via l'interface CLI."
+        echo "   cli <cmd>               Send a CLI command to the Soho instance"
         ;;
 esac

@@ -35,6 +35,10 @@ ErrorDocument 404 /www/error.html?e=404&m=Not+Found
     # HTTP Authentication support
     RewriteCond %{HTTP:Authorization} ^(.*)
     RewriteRule .* - [E=REMOTE_USER:%{HTTP:Authorization},L]
+    
+    # Basic query
+    RewriteCond %{QUERY_STRING} ^$
+    RewriteRule ^/$ /index.home.html
 
     # TODO Deprecated ?
     RewriteCond %{REQUEST_URI} ^/config/.* [NC]

@@ -353,7 +353,7 @@ abstract class CommandHandler {
 			array_shift($argv);
 
 			// Search for command
-			if (!array_key_exists($cmd, $this->commands)) {
+			if (@!array_key_exists($cmd, $this->commands)) {
 				
 				// Save the error state
 				$this->result = array(
