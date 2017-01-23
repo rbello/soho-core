@@ -3,8 +3,8 @@
 if (php_sapi_name() != 'cli') exit(-1);
 
 // Init system
-include __DIR__ . '/../system/bootstrap.php';
-require_once __DIR__ . '/cli/CommandHandler.php';
+include __DIR__ . '/../../bootstrap.php';
+require_once __DIR__ . '/../soho.cli/CommandHandler.php';
 
 class EntCommandHandler extends \PHPonCLI\CommandHandler {
     
@@ -35,6 +35,7 @@ class EntCommandHandler extends \PHPonCLI\CommandHandler {
 $cli = new EntCommandHandler();
 
 // On rajoute les commandes des APIs
+# TODO Demander au package manager les APIs
 foreach (glob(__DIR__ . '/../api/*.php') as $file) {
 	$classname = substr(basename($file), 0, -4);
 	require_once $file;

@@ -1,7 +1,13 @@
 #!/bin/sh
 
+VERSION="3.1.31"
+
 SCRIPT="`readlink -e $0`"
 SCRIPT="`dirname $SCRIPT`"
+
+# Mode debug
+# En mode debug, la génération du JAVASCRIPT n'est pas compressée (packed)
+DEBUG=true
 
 case "$1" in
 
@@ -14,20 +20,20 @@ case "$1" in
         mkdir src-php/data/cache/wsdl
         rm -rf src-php/data/cache/sass
         mkdir src-php/data/cache/sass
+        rm -rf src-php/www/css
+        mkdir src-php/www/css
+        echo "Nothing here..." > src-php/www/css/index.html
         ;;
-        
+
     update)
         echo "Update dependencies..."
         composer update
         ;;
-        
+
     install)
         echo "Install required applications...";
         gem install sass
         gem install compass
-        echo "Update client dependencies...";
-        #bower install ng-table
-        bower install --save GoogleWebComponents/google-map
         echo "Update server dependencies..."
         composer update
         echo "Generate CSS and JavaScripts..."
@@ -35,9 +41,9 @@ case "$1" in
         #echo "Generate entities..."
         #php $SCRIPT/system/lib/doctrine/orm/bin/doctrine orm:generate-entities --regenerate-entities=true --verbose --generate-annotations=true -- system
         echo "Prepare SQL database..."
-        php $SCRIPT/system/lib/doctrine/orm/bin/doctrine orm:schema-tool:create
+        #php $SCRIPT/system/lib/doctrine/orm/bin/doctrine orm:schema-tool:create
         ;;
-        
+
     data)
         if [ "$2" = "truncate" ]; then
             php $SCRIPT/system/install/truncate-db.php
@@ -60,36 +66,44 @@ case "$1" in
         echo "ORM mapping info for: $2"
         php $SCRIPT/system/lib/doctrine/orm/bin/doctrine orm:mapping:describe $2
         ;;
-        
+
     cli)
-        chmod +x $SCRIPT/system/cli.php
-        $SCRIPT/system/cli.php $2 $3 $4 $5 $6 $7 $8 $9
+        chmod +x $SCRIPT/src-php/system/lib/soho.core/cli.php
+        $SCRIPT/src-php/system/lib/soho.core/cli.php $2 $3 $4 $5 $6 $7 $8 $9
         ;;
-        
+
     css)
         if [ "$2" = "-watch" ]; then
             compass watch --trace
         else
-            compass compile
+            compass compile src-css/soho.scss
         fi
         ;;
-        
+
     js)
         if [ "$2" = "-watch" ]; then
             php $SCRIPT/system/install/watch-js.php
         else
-            cat www/js/utils.js www/js/main.js www/js/auth.js www/js/AppCtrl.js > www/res/ent.js
-            echo "    write www/res/ent.js"
-            java -jar system/lib/bin/yuicompressor.jar www/res/ent.js -o www/res/ent-min.js
-            echo "    write www/res/ent-min.js"
+            cat src-js/core.js src-js/util.js src-js/security.js src-js/ui.js src-js/ui.view.js src-js/ui.trayicon.js src-js/live.js src-js/search.js  > build/WG-$VERSION.js
+            echo "    write build/WG-$VERSION.js"
+            java -jar src-js/yuicompressor.jar build/WG-$VERSION.js -o build/WG-$VERSION.pack.js
+            echo "    write build/WG-$VERSION.pack.js"
+	    sed -i '1s;^;/**\n * JavaScript application for SoHo web application container\n * $Id: soho.js\n */\n/*global jQuery*/\n;' build/WG-$VERSION.pack.js
+	    if [ "$DEBUG" = true ] ; then
+		cp build/WG-$VERSION.js src-php/www/js/soho.js
+		echo "    copy -> src-php/www/js/soho.js (debug)"
+	    else
+		cp build/WG-$VERSION.pack.js src-php/www/js/soho.js
+		echo "    copy -> src-php/www/js/soho.js (production)"
+	    fi
         fi
         ;;
-        
+
     compile)
         ./go.sh js
         ./go.sh css
         ;;
-        
+
     *)
         echo "Usage: go.sh <option>"
         echo "Setup:"
