@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION="3.1.31"
+VERSION="4.0.31"
 
 SCRIPT="`readlink -e $0`"
 SCRIPT="`dirname $SCRIPT`"

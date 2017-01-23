@@ -1,5 +1,6 @@
-
-WG.ui.createWindow = function (opts) {
+/*global Soho*/
+/*global jQuery*/
+Soho.ui.createWindow = function (opts) {
 
 	opts = opts || {};
 	opts = jQuery.extend({
@@ -22,14 +23,14 @@ WG.ui.createWindow = function (opts) {
 	// Title
 	var title = document.createElement('div');
 	title.setAttribute('class', 'title');
-	title.innerHTML = WG.util.htmlspecialchars(opts.title);
+	title.innerHTML = Soho.util.htmlspecialchars(opts.title);
 
 	// Construct window
 	topbar.appendChild(title);
 	window.appendChild(topbar);
 	
 	// Create jQuery node
-	node = $(window);
+	let node = $(window);
 	
 	// Hide window
 	node.hide();

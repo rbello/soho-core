@@ -403,7 +403,7 @@ var Soho = (function () {
 			);
 			// Callback
 			if (error) error();
-		}
+		};
 		// On success callback
 		var onSuccess = function (data) {
 			// Update UI
@@ -414,7 +414,7 @@ var Soho = (function () {
 			Soho.setStatus(null);
 			// Callback
 			if (success) success();
-		}
+		};
 		// Query to server
 		Soho.ajax({
 			url: appdata.wg_url + 'ws.php',
