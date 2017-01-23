@@ -1,3 +1,4 @@
+```
         _            _            _       _    _       
        / /\         /\ \         / /\    / /\ /\ \     
       / /  \       /  \ \       / / /   / / //  \ \    
@@ -5,17 +6,17 @@
     / / /\ \___\ / / /\ \ \   / /\ \__/ / // / /\ \ \  
     \ \ \ \/___// / /  \ \_\ / /\ \___\/ // / /  \ \_\ 
      \ \ \     / / /   / / // / /\/___/ // / /   / / / 
- \_    \ \ \   / / /   / / // / /   / / // / /   / / /  
+ _    \ \ \   / / /   / / // / /   / / // / /   / / /  
 /_/\__/ / /  / / /___/ / // / /   / / // / /___/ / /   
 \ \/___/ /  / / /____\/ // / /   / / // / /____\/ /    
  \_____\/   \/_________/ \/_/    \/_/ \/_________/     
                                                        
+```
 
 # soho-core
-Core part of Soho web application container
+Core part of Soho Web Application Container
 
-Using API
----------
+### Using API
 
 There are several possibilities to access the API of the application.
 First, the code executed on the server can use the API **direct access**:
