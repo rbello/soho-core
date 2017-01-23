@@ -1,8 +1,25 @@
 {
+    "name": "rbello/soho-core",
+    "description": "Soho Server",
+    "homepage": "https://github.com/rbello/soho-core",
+    "type": "project",
+    "license": "GNU 3",
     "config": {
-        "vendor-dir": "src-php/lib"
+        "vendor-dir": "src-php/system/lib/3rdParty"
     },
     "require": {
-        "gregwar/formidable": "dev-master"
+        "php": ">=5.4.16",
+        "packagist/yuicompressor-bin": "*",
+        "doctrine/orm": "*",
+        "wingu/reflection": "~1.0",
+        "php2wsdl/php2wsdl": "*"
+    },
+    "scripts": {
+        "post-install-cmd": "installer::postInstall"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-0": {"": "models/"}
     }
 }

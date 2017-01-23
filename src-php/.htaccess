@@ -1,11 +1,58 @@
+# Allow from all
 Order Deny,Allow
-Allow from Allow
+Allow from all
 
 # Enable PHP 5
 SetEnv PHP_VER 5_3
 
+# Désactive le listing des répertoires
+Options -Indexes
+
+# On active le suivi des liens
+Options FollowSymLinks
+
+# Charset
+AddDefaultCharset UTF-8
+
+# Handle HTML files as PHP
+AddHandler application/x-httpd-php .html .htm
+
+# PHP configuration
+<IfModule mod_php5.c>
+    php_value short_open_tag 1
+</IfModule>
+
+# Errors
+ErrorDocument 403 /www/error.html?e=403&m=Forbidden
+ErrorDocument 404 /www/error.html?e=404&m=Not+Found
+
 <IfModule mod_rewrite.c>
-RewriteEngine on
-RewriteCond %{HTTP:Authorization} ^(.*)
-RewriteRule .* - [E=REMOTE_USER:%{HTTP:Authorization},L]
+
+    # Enable rewrite engine
+    RewriteEngine On
+    RewriteBase /
+
+    # HTTP Authentication support
+    RewriteCond %{HTTP:Authorization} ^(.*)
+    RewriteRule .* - [E=REMOTE_USER:%{HTTP:Authorization},L]
+
+    # TODO Deprecated ?
+    RewriteCond %{REQUEST_URI} ^/config/.* [NC]
+    RewriteRule ^config/(.*) - [F]
+    RewriteCond %{REQUEST_URI} ^/models/.* [NC]
+    RewriteRule ^models/(.*) - [F]
+    
+    # Web client
+    RewriteCond %{REQUEST_URI} !^/www/.* [NC]
+    RewriteCond %{REQUEST_URI} !^/api/.* [NC]
+    RewriteCond %{REQUEST_URI} !^/system/.* [NC]
+    RewriteRule ^([^?]*)$ /www/$1 [NC,L,QSA]
+
+    # API as a WebService
+    RewriteCond %{REQUEST_URI} ^/api/.* [NC]
+    RewriteRule ^api\/(.*)\.info$ /system/api.php?x--dn=info+$1 [L]
+    RewriteRule ^api\/(.*)\.wsdl$ /system/api.php?x--dn=wsdl+$1 [L]
+    RewriteRule ^api\/(.*)\.soap$ /system/api.php?x--dn=soap+$1 [L]
+    RewriteRule ^api\/(.*)\/(.*)\.json$ system/api.php?x--dn=rest+$1+json+$2 [L,QSA]
+
 </IfModule>
