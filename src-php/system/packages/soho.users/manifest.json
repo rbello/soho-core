@@ -1,6 +1,6 @@
 {
     "vars": {
-        "api_key": {
+        "api_kesssy": {
             "value": 0,
             "description": "bla bla",
             "permission": "TRUC.machin",

@@ -22,7 +22,7 @@ $ctx->addHandler($handler1[0], $handler1[1]);
 $handler2 = include BASE . 'system/app/soho.packages/handler.router.php';
 $ctx->addHandler($handler2[0], $handler2[1]);
 
-echo "  Load handlers...\n";
+echo "  Seek handlers...\n";
 
 // Make a first turn to seek handlers
 while (false !== ($entry = readdir($handle))) {
@@ -32,11 +32,21 @@ while (false !== ($entry = readdir($handle))) {
     $ctx->loadInstalledPackage($f);
 }
 
+echo "  Load handlers...\n";
+
+foreach ($handler1[2] as $hd) {
+    $ctx->addHandler($hd[0], $hd[1]);
+}
+
 // Back to beginning
 rewinddir($handle);
 
 $ctx->removeHandler($handler1[0]);
 $ctx->removeHandler($handler2[0]);
+
+// Add handler for plugins
+$handler3 = include BASE . 'system/app/soho.packages/handler.plugin.php';
+$ctx->addHandler($handler3[0], $handler3[1]);
 
 echo "  Load packages...\n";
 

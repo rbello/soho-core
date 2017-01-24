@@ -1,0 +1,8 @@
+{
+    "plugin": {
+        "ConfigPlugin": {
+            "class": "Soho\\Config\\ConfigPlugin",
+            "file": "{s}/plugin.config.php"
+        }
+    }
+}
