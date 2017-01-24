@@ -3,9 +3,9 @@
 # Set this to the root of your project when deployed:
 http_path = "/"
 sass_dir = "src-css"
-css_dir = "src-php/www/css"
-images_dir = "src-php/www/img"
-javascripts_dir = "src-php/www/js"
+css_dir = "src-php/system/packages/ui/css"
+images_dir = "src-php/system/packages/ui/img"
+javascripts_dir = "src-php/system/packages/ui/js"
 
 # You can select your preferred output style here (can be overridden via the command line):
 # output_style = :expanded or :nested or :compact or :compressed

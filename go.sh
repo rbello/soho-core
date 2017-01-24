@@ -26,6 +26,7 @@ case "$1" in
         rm -rf src-php/www/js
         mkdir src-php/www/js
         echo "Nothing here..." > src-php/www/js/index.html
+        rm -f .htaccess
         ;;
 
     update)
@@ -34,15 +35,26 @@ case "$1" in
         ;;
 
     setup)
-        echo "Install required applications...";
-        gem install sass
-        gem install compass
+    
+        echo "Install required applications..."
+        #gem install sass
+        #gem install compass
+        
         echo "Update server dependencies..."
-        composer update
+        #composer update
+        
+        #echo "Create root .htaccess file..."
+        #cp $SCRIPT/src-php/.htaccess $SCRIPT/.htaccess
+        #BASE="\/src-php"
+        #sed -i "s/ error.html/ $BASE\/www\/error.html/g" $SCRIPT/.htaccess
+        #sed -i "s/ \/system\// $BASE\/system\//g" $SCRIPT/.htaccess
+        
         echo "Generate CSS and JavaScripts..."
-        ./go.sh compile
+        #./go.sh compile
+        
         #echo "Generate entities..."
         #php $SCRIPT/system/lib/doctrine/orm/bin/doctrine orm:generate-entities --regenerate-entities=true --verbose --generate-annotations=true -- system
+        
         echo "Prepare SQL database..."
         #php $SCRIPT/system/lib/doctrine/orm/bin/doctrine orm:schema-tool:create
         ;;
@@ -93,10 +105,10 @@ case "$1" in
             echo "    write build/WG-$VERSION.pack.js"
     	    sed -i '1s;^;/**\n * JavaScript application for SoHo web application container\n * $Id: soho.js\n */\n/*global jQuery*/\n;' build/WG-$VERSION.pack.js
     	    if [ "$DEBUG" = true ] ; then
-    		    cp build/WG-$VERSION.js src-php/www/js/soho.js
+    		    cp build/WG-$VERSION.js src-php/system/packages/ui/js/soho.js
     		    echo "    copy -> src-php/www/js/soho.js (debug)"
     	    else
-    		    cp build/WG-$VERSION.pack.js src-php/www/js/soho.js
+    		    cp build/WG-$VERSION.pack.js src-php/system/packages/ui/js/soho.js
     		    echo "    copy -> src-php/www/js/soho.js (production)"
     	    fi
         fi

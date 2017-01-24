@@ -159,13 +159,13 @@ var Soho = (function () {
 			'lock',
 			'Lock my session...',
 			Soho.ui.TrayMenuStack.BOTTOM,
-			function () { Soho.lock(); }
+			function () { lock(); }
 		);
 		Soho.ui.addTrayMenuItem(
 			'logout',
 			'Log out...',
 			Soho.ui.TrayMenuStack.BOTTOM,
-			function () { Soho.logout(); }
+			function () { logout(); }
 		);
 		// Apply default behavior
 		Soho.View.applyStandardBehavior(uidata.uiComponents.main);
@@ -174,12 +174,12 @@ var Soho = (function () {
 			uidata.autolockThread = setInterval(
 				function () {
 					if (new Date().getTime() - uidata.lastAction > appdata.wg_autolockDelay) {
-						Soho.lock();
+						lock();
 					}
 				},
 				30000
 			);
-		};
+		}
 
 		// Enable live service
 		startLive();
@@ -196,7 +196,7 @@ var Soho = (function () {
 		uidata.lastAction = new Date().getTime();
 
 	};
-	
+
 	/**
 	 * Function to dispose all components of Soho 
 	 *
@@ -250,7 +250,7 @@ var Soho = (function () {
 			//window.localStorage.removeItem('WG.nightmode');
 		}
 	};
-	
+
 	/**
 	 * Function to sign out.
 	 * 
@@ -268,9 +268,8 @@ var Soho = (function () {
 		Soho.setStatus('Logout...', Soho.status.WAIT);
 		// Save APP url
 		var url = appdata.wg_url;
-		
 		// Destroy session
-		Soho.dispose();
+		dispose();
 		// Ask logout webservice
 		Soho.ajax({
 			url: url + 'ws.php',
@@ -313,7 +312,7 @@ var Soho = (function () {
 		}
 		// Log
 		if (console) {
-			console.log('Lock');
+			console.log('[ui] Lock');
 		}
 		// Construct locker overlay
 		uidata.uiComponents.locker.innerHTML = '<h1>' + Soho.util.htmlspecialchars(appdata.wg_appName)
@@ -332,7 +331,7 @@ var Soho = (function () {
 		var form = document.createElement('form');
 		form.onsubmit = function () {
 			if (Soho.security.sha1(userdata.wg_login + ':' + input.value).substr(0, 15) === userdata.wg_pwdhash) {
-				Soho.unlock();
+				unlock();
 			}
 			else {
 				input.value = '';
@@ -732,17 +731,17 @@ var Soho = (function () {
 			}
 			return Soho;
 		},
-		
+
 		time: {
-			
+
 			getLocalTime: function () {
 				return new Date();
 			},
-			
+
 			getServerOffset: function () {
 				return appdata.wg_serverTimeOffset;
 			},
-			
+
 			getServerTime: function () {
 				
 				// Si on a pas encore reçu la timezone du serveur, on renvoi 
@@ -750,20 +749,20 @@ var Soho = (function () {
 				if (appdata.wg_serverTimezone === null) {
 					return new Date();
 				}
-	
+
 				// On détermine les éléments dont on va avoir besoin
 				var localDate = new Date(),
 					localOffset = localDate.getTimezoneOffset(),
 					serverOffset = appdata.wg_serverTimeOffset,
 					serverTz = (serverOffset / 100 * -1) * 60,
 					timeDiff = (localOffset - serverTz) * 60000;
-				
+
 				// On calcule le temps différé
 				var shiftedTime = serverOffset < 360 ? localDate.getTime() + timeDiff : localDate.getTime() - timeDiff;
-	
+
 				// On renvoi un objet Date avec la config locale du serveur
 				return new Date(shiftedTime);
-				
+
 			}
 		}
 	};

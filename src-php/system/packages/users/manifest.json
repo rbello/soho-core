@@ -1,0 +1,10 @@
+{
+    "vars": {
+        "api_key": {
+            "value": 0,
+            "description": "bla bla",
+            "permission": "TRUC.machin",
+            "reboot": false
+        }
+    }
+}
