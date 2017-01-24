@@ -26,6 +26,6 @@ return array(
 
         // Store configuration
         $context->merge('vars', $contents);
-        echo "Package=$packagename Manifest=$item\n";
+        echo "\t* New Vars (package $packagename)\n";
     }
 );

@@ -23,40 +23,14 @@ AddHandler application/x-httpd-php .html .htm
 </IfModule>
 
 # Errors
-ErrorDocument 403 error.html?e=403&m=Forbidden
-ErrorDocument 404 error.html?e=404&m=Not+Found
+#ErrorDocument 403 error.html?e=403&m=Forbidden
+#ErrorDocument 404 error.html?e=404&m=Not+Found
 
-<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ system/index.php?p=$1 [NC,L,QSA]
 
-    # Enable rewrite engine
-    RewriteEngine On
-    #RewriteBase /
+# HTTP Authentication support
+#RewriteCond %{HTTP:Authorization} ^(.*)
+#RewriteRule .* - [E=REMOTE_USER:%{HTTP:Authorization},L]
 
-    # HTTP Authentication support
-    RewriteCond %{HTTP:Authorization} ^(.*)
-    RewriteRule .* - [E=REMOTE_USER:%{HTTP:Authorization},L]
-
-    # Basic query
-    RewriteCond %{QUERY_STRING} ^$
-    RewriteRule ^/$ index.home.html
-
-    # TODO Deprecated ?
-    #RewriteCond %{REQUEST_URI} ^/config/.* [NC]
-    #RewriteRule ^config/(.*) - [F]
-    #RewriteCond %{REQUEST_URI} ^/models/.* [NC]
-    #RewriteRule ^models/(.*) - [F]
-    
-    # Web client
-    #RewriteCond %{REQUEST_URI} !^/www/.* [NC]
-    #RewriteCond %{REQUEST_URI} !^/api/.* [NC]
-    #RewriteCond %{REQUEST_URI} !^/system/.* [NC]
-    #RewriteRule ^([^?]*)$ /www/$1 [NC,L,QSA]
-
-    # API as a WebService
-    #RewriteCond %{REQUEST_URI} ^/api/.* [NC]
-    #RewriteRule ^api\/(.*)\.info$ /system/api.php?x--dn=info+$1 [L]
-    #RewriteRule ^api\/(.*)\.wsdl$ /system/api.php?x--dn=wsdl+$1 [L]
-    #RewriteRule ^api\/(.*)\.soap$ /system/api.php?x--dn=soap+$1 [L]
-    #RewriteRule ^api\/(.*)\/(.*)\.json$ system/api.php?x--dn=rest+$1+json+$2 [L,QSA]
-
-</IfModule>

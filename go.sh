@@ -59,6 +59,14 @@ case "$1" in
         #php $SCRIPT/system/lib/doctrine/orm/bin/doctrine orm:schema-tool:create
         ;;
 
+    pkg)
+        if [ "$2" = "reload" ]; then
+            php $SCRIPT/src-php/system/app/soho.core/reload-context.php
+        else
+            php $SCRIPT/src-php/system/app/soho.core/print-context.php
+        fi
+        ;;
+
     data)
         if [ "$2" = "truncate" ]; then
             php $SCRIPT/system/install/truncate-db.php
@@ -125,11 +133,9 @@ case "$1" in
         echo "   setup                   Setup environment"
         echo "   update                  Update library dependencies"
         echo "   clean-files             Clean up all temporary or generated files"
-#        echo "Data:"
-#        echo "   mapinfo <entity>        Affiche les informations de mapping de l'entité."
-#        echo "   data <dataset>          Installer les données samples."
-#        echo "   data truncate           Nettoyer toutes les données de la base."
-#        echo "   data rebuild [dataset]  Reconstruit la structure de la BDD à partir des entités."
+        echo "Packages"
+        echo "   pkg                     Print current application context"
+        echo "   pkg reload              Reload application context"
         echo "Generation:"
         echo "   css [-watch]            Generate CSS files"
         echo "   js [-watch]             Generate JAVASCRIPT files"

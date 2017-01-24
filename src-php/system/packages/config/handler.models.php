@@ -10,6 +10,6 @@ return array(
             'package' => $packagename,
             'path' => $filepath
         )));
-        echo "Model=$model Package=$packagename File=$item\n";
+        echo "\t* New Model '$model' (package $packagename)\n";
     }
 );
