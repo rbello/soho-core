@@ -18,14 +18,14 @@ return array(
                 'reload'        => PkgContext::TYPE_BOOLEAN // Application reload is required if modified
             ),
             // Iterate each attribute
-            function (&$value) use ($packagename) {
+            function (&$value, $varname) use ($packagename) {
                 // And add the package name
                 $value['package'] = $packagename;
+                echo "\t* New Var '$varname' (package $packagename)\n";
             }
         );
 
         // Store configuration
         $context->merge('vars', $contents);
-        echo "\t* New Vars (package $packagename)\n";
     }
 );

@@ -2,8 +2,11 @@
 
 namespace Soho\Config;
 
-class ConfigPlugin {
+class ConfigPlugin implements \SohoPlugin {
 
+	public function onStart(\Soho $soho) {
+		
+	}
 
 	/**
 	 * @param mixed[] $values

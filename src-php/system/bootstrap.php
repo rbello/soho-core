@@ -8,11 +8,15 @@ require_once BASE . 'system/app/soho.core/logs.php';
 error_reporting($config['debug'] ? E_ALL : 0);
 
 // Librairies tierses
-require_once BASE . 'system/lib/soho.core/autoload.php';
-require_once BASE . 'system/lib/3rdParty/autoload.php';
+require_once BASE . 'system/app/autoload.php';
+require_once BASE . 'system/lib/autoload.php';
 
 ### LEAZY LOADING !
 ### Ne pas tout charger d'un coup !
+
+require_once BASE . 'system/app/soho.core/soho.php';
+
+$GLOBALS['soho'] = new Soho(include BASE . 'data/cache/app/context.cache.php');
 
 // Authentication
 #require_once BASE . 'system/lib/soho.security/auth.php';

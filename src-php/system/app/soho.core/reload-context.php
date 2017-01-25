@@ -4,6 +4,8 @@ echo "Reload application context...\n";
 
 include 'src-php/system/app/soho.core/config.php';
 
+include BASE . 'system/app/soho.core/soho.php';
+
 include BASE . 'system/app/soho.packages/pkg.context.php';
 
 $ctx = new \Soho\Packages\PkgContext();
@@ -62,3 +64,5 @@ while (false !== ($entry = readdir($handle))) {
 $f = BASE . 'data/cache/app/context.cache.php';
 echo "  Write to: $f\n";
 file_put_contents($f, '<?php return ' . var_export($ctx->getContents(), true) . ';');
+
+//print_r($ctx->getContents());

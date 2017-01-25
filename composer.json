@@ -5,7 +5,7 @@
     "type": "project",
     "license": "GNU 3",
     "config": {
-        "vendor-dir": "src-php/system/lib/3rdParty"
+        "vendor-dir": "src-php/system/lib"
     },
     "require": {
         "php": ">=5.4.16",

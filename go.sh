@@ -20,13 +20,10 @@ case "$1" in
         mkdir src-php/data/cache/wsdl
         rm -rf src-php/data/cache/sass
         mkdir src-php/data/cache/sass
-        rm -rf src-php/www/css
-        mkdir src-php/www/css
-        echo "Nothing here..." > src-php/www/css/index.html
-        rm -rf src-php/www/js
-        mkdir src-php/www/js
-        echo "Nothing here..." > src-php/www/js/index.html
-        rm -f .htaccess
+        rm -rf src-php/data/cache/app
+        mkdir src-php/data/cache/app
+        rm -f src-php/php_errors.log
+        rm -f php_errors.log
         ;;
 
     update)

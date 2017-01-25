@@ -145,7 +145,7 @@ class PkgContext {
             // Filter only desired fields
             $value = array_intersect_key($value, $filters);
             // Give to handler
-            if ($cb != null) $cb($value);
+            if ($cb != null) $cb($value, $key);
         }
     }
 

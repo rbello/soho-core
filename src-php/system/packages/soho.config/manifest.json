@@ -2,7 +2,7 @@
     "plugin": {
         "ConfigPlugin": {
             "class": "Soho\\Config\\ConfigPlugin",
-            "file": "{s}/plugin.config.php"
+            "file": "{package.dir}/plugin.config.php"
         }
     }
 }
