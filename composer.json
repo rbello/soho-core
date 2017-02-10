@@ -12,7 +12,8 @@
         "packagist/yuicompressor-bin": "*",
         "doctrine/orm": "*",
         "wingu/reflection": "~1.0",
-        "php2wsdl/php2wsdl": "*"
+        "php2wsdl/php2wsdl": "*",
+        "nikic/php-parser": "~3.0"
     },
     "scripts": {
         "post-install-cmd": "installer::postInstall"

@@ -92,6 +92,24 @@ case "$1" in
         $SCRIPT/src-php/system/lib/soho.core/cli.php $2 $3 $4 $5 $6 $7 $8 $9
         ;;
 
+    integrity)
+        if [ "$2" = "update" ]; then
+            php $SCRIPT/src-php/system/app/soho.security/data-integrity.update.php
+        elif [ "$2" = "check" ]; then
+            php $SCRIPT/src-php/system/app/soho.security/data-integrity.check.php
+        else
+            echo "Usage: ./go.sh integrity <update|check>"
+        fi
+        ;;
+    
+    htaccess)
+        if [ "$2" = "check" ]; then
+            php $SCRIPT/src-php/system/app/soho.security/htaccess.check.php
+        else
+            echo "Usage: ./go.sh htaccess <check>"
+        fi
+        ;;
+        
     css)
         if [ "$2" = "-watch" ]; then
             compass watch --trace
@@ -133,6 +151,10 @@ case "$1" in
         echo "Packages"
         echo "   pkg                     Print current application context"
         echo "   pkg reload              Reload application context"
+        echo "Integrity"
+        echo "   integrity check         Check if system files has been modified"
+        echo "   integrity update        Update system check reference"
+        echo "   htaccess check          Check visibility of files according to htaccess"
         echo "Generation:"
         echo "   css [-watch]            Generate CSS files"
         echo "   js [-watch]             Generate JAVASCRIPT files"

@@ -1,4 +1,13 @@
 {
+    "plugin": {
+        "ViewPlugin": {
+            "class": "Soho\\UI\\ViewPlugin",
+            "file": "{package.dir}/plugin.view.php",
+            "hooks": {
+                "http request": "__onHttpRequest"
+            }
+        }
+    },
     "vars": {
         "api_keys": {
             "value": 0,

@@ -6,11 +6,12 @@ class PkgContext {
 
     private $MANIFEST_FILE = "manifest.json";
 
-    const TYPE_MULTI = 1;
+    const TYPE_MIXED = 1;
     const TYPE_STRING = 1;
     const TYPE_BOOLEAN = 1;
     const TYPE_DOUBLE = 1;
     const TYPE_LONG = 1;
+    const TYPE_ARRAY = 1;
 
     private $ctx = array();
     private $handlers = array();
